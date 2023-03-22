@@ -1,3 +1,7 @@
+http://example.com/2023/03/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/
+http://example.com/2023/03/22/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/
+http://example.com/2023/03/22/%E5%BC%95%E7%94%A8/
+http://example.com/2023/03/22/c-20/
 http://example.com/link/index.html
 http://example.com/2023/03/20/hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/
 http://example.com/tags/index.html
