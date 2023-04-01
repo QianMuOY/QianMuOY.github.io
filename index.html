@@ -52,7 +52,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-04-01 17:49:52'
+  postUpdate: '2023-04-01 20:51:02'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -157,12 +157,71 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="qianmu's blog" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="qianmu's blog"><span class="site-name">qianmu's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">qianmu's blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/matplotlib/" title="matplotlib">matplotlib</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T09:44:40.000Z" title="Created 2023-04-01 17:44:40">2023-04-01</time></span></div><div class="content">matplotlibwhy matplotlib?如果您使用过“工科神器”MATLAB，您一定会惊叹于MATLAB中惊人的可视化能力，其中的函数绘图，成为了无数SCI论文中真实数据配图的来源。小小的plot函数，画出了人类先进科学进步的曲线。
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="qianmu's blog"><span class="site-name">qianmu's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">qianmu's blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/MD5/" title="MD5">MD5</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:50:07.000Z" title="Created 2023-04-01 20:50:07">2023-04-01</time></span></div><div class="content">加密MD5是一种哈希算法，任意长度的输入经过处理后输出为128位的信息，且尽量使结果不冲突和信息不可逆。MD5以512位为一个分组处理输入，每个分组分成16个32位的子分组，经过处理后，输出四个32位分组，这四个32位分组级联后生成一个128位的MD5值
+MD5的特点单向散列算法：将一种任意长度的消息数据压缩到某一固定长度，该过程是不可逆的。
+ MD5 Message Digest Algorithm 是对任意长度的消息进行运算，产生一个128位的消息摘要。
+ 压缩性:任意长度的数据，算出的MD5值长度都是固定的。
+ 容易计算:从原数据计算出MD5值很容易。
+ 抗修改性:对原数据进行任何改动，哪怕只修改1个字节，所得到的MD5值都有很大区别。
+ 强抗碰撞:已知原数据和其MD5值，想找到一个具有相同MD5值的数据(即伪造数据)是非常困难的。
+MD5的作用是让大容量信息在用数字签名软件签署私人密钥前被”压缩”成一种保密的格式(就是把一个任意长度的字节串变换成一定长的十六进制数字串)。
+在内存中是小端序存储
+将原始数据每512bits为一个分组 (这就是前面要求填充到512整数倍的原因)，对 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/BFS/" title="BFS">BFS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:39:09.000Z" title="Created 2023-04-01 20:39:09">2023-04-01</time></span></div><div class="content">BFS解决迷宫问题迷宫问题Crawling in process… Crawling failed Time Limit:1000MS    Memory Limit:65536KB     64bit IO Format:%I64d &amp; %I64uSubmit StatusDescription
+定义一个二维数组：
+int maze [5] [5] &#x3D; {
+ 0, 1, 0, 0, 0,
+ 0, 1, 0, 1, 0,
+ 0, 0, 0, 0, 0,
+ 0, 1, 1, 1, 0,
+ 0, 0, 0, 1, 0,
+};
+它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的最短路线。      
+输入
+一个5 × 5的二维数组，表示一个迷宫。数据保证有唯一解。      
+输出
+左上角到右下角的最短路径
+解题思路使用结构体来保存横纵坐标即(x,y)，输出没要求距离长度，定义一个step保存长度也可以
+创建一个队列 queue q;
+12345678910while(q不为空)&#123;if(到达右下角) ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/SHA1/" title="SHA1">SHA1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:27:59.000Z" title="Created 2023-04-01 20:27:59">2023-04-01</time></span></div><div class="content">SHA1安全哈希算法（Secure Hash Algorithm）主要适用于数字签名标准（Digital Signature Standard DSS） 里面定义的数字签名算法（Digital Signature Algorithm DSA）。
+该算法输入报文的长度不限，产生的输出是一个160位的报文摘要。输入是按512 位的分组进行处理的。SHA-1是不可逆的、防冲突，并具有良好的雪崩效应。
+ 算法： 1.数据末尾填充0x80 39 31 31 4d 61 6f 48 61 69      “911MaoHai” 39 31 31 4d 61 6f 48 61 69 80 9 * 8 &#x3D; 72   2.计算原始数据的长度 72 &#x3D; 0x00 00 00 00 00000048 39 31 31 4d 61 6f 48 61 69 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/DFS/" title="DFS">DFS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:15:41.000Z" title="Created 2023-04-01 20:15:41">2023-04-01</time></span></div><div class="content">DFS一.深度优先搜索（dfs）1.什么叫dfs深度优先搜索类似于树的先序遍历；
+是利用栈或者递归的方式实现的，体现出了后进先出的特点；
+通俗来说就是一次访问一条路，一直朝着一个方向探索，直到遇到死路退回到前一个分支，继续探索；
+一般来说，深度搜索解决的问题主要为寻求所有解和连通性。
+2.遍历过程（1）从图中某个初始顶点v出发，首先访问初始顶点v。
+（2）然后依次从v的未被访问的邻接点w，再从w出发进行深度优先遍历，直到图中所有与v有路径相通的的顶点都被访问过为止。
+3.算法设计解决问题:（1）如何确定一个顶点是否访问过？
+设置一个visited[]全局数组，
+visited[i]&#x3D;0表示顶点i没有访问;
+visited[i]&#x3D;1表示顶点i已经访问过。
+（在图中也可以修改图本身来实现）
+4.dfs算法模板1234567891011121314151617void dfs(int s)&#123;	if(找到解了)	&#123;		相应的操作；		return ；	&#125;	尝试每一种可能	&#123;		if(满足条件)		&#123;			标记走过；			进行 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/RC4/" title="RC4">RC4</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:08:51.000Z" title="Created 2023-04-01 20:08:51">2023-04-01</time></span></div><div class="content">RC4什么是RC4 ? RC4加密算法是大名鼎鼎的RSA三人组中的头号人物Ron Rivest在1987年设计的密钥长度可变的流加密算法簇，之所以称其为簇，是由于其核心部分的S-box长度可为任意，但一般为256字节。
+ 在密码学中，RC4（来自Rivest Cipher 4的缩写）是一种流加密算法，密钥长度可变。它加解密使用相同的密钥，因此也属于对称加密算法。所谓对称加密，就是加密和解密的过程是一样的。RC4是有线等效加密（WEP）中采用的加密算法，也曾经是TLS可采用的算法之一。
+ RC4已经成为一些常用的协议和标准的一部分，如1997年的WEP和2003&#x2F;2004年无线卡的WPA; 和1995年的SSL，以及后来1999年的TLS。让它如此广泛分布和使用的主要因素是它不可思议的简单和速度，不管是软件还是硬件，实现起来都十分容易。
+基本原理对明文使用同一个密钥异或两次最后得到的是原文
+
+加密：原文和Keystream进行异或得到密文
+解密：密文和Keystream进行异或得到原文
+
+
+流程图解
+生成秘钥流（KeyStream）从上图可以看出来，RC4加密原理很简单，只需要 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/AvlTree/" title="AvlTree">AvlTree</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:02:12.000Z" title="Created 2023-04-01 20:02:12">2023-04-01</time></span></div><div class="content">AvlTree定义AVL 树是一种平衡二叉树，得名于其发明者的名字（ Adelson-Velskii 以及 Landis）。（可见名字长的好处，命名都能多占一个字母出来）。平衡二叉树递归定义如下：
+
+左右子树的高度差小于等于 1。
+其每一个子树均为平衡二叉树。
+
+平衡因子： 某个结点的左子树的高度减去右子树的高度得到的差值。
+AVL 树： 所有结点的平衡因子的绝对值都不超过 1 的二叉树。
+为了计算平衡因子，我们自然需要在节点中引入高度这一属性。在这里，我们把节点的高度定义为其左右子树的高度的最大值。因此，引入了高度属性的 AVL 树的节点定义如下：
+123456typedef struct node &#123;    int             data;    int             height;    struct node     *left;    struct node     *right;&#125;node_t, * nodeptr_t;
+
+计算某一个节点的高度
+1234567int treeHeight(nodeptr_t root) &#123;  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/matplotlib/" title="matplotlib">matplotlib</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T09:44:40.000Z" title="Created 2023-04-01 17:44:40">2023-04-01</time></span></div><div class="content">matplotlibwhy matplotlib?如果您使用过“工科神器”MATLAB，您一定会惊叹于MATLAB中惊人的可视化能力，其中的函数绘图，成为了无数SCI论文中真实数据配图的来源。小小的plot函数，画出了人类先进科学进步的曲线。
 python中的matplotlib库，与MATLAB中的plot函数有点像，也许这正是它名字的来源。这是一个2D绘图库，利用它可以画出许多高质量的图像。只需几行代码即可生成直方图，条形图，饼图，散点图等。Matplotlib可用于Python脚本，Python和IPython shell，Jupyter笔记本，Web应用程序服务器和四个图形用户界面工具包。
 希望以下教程可以为您带来一些帮助。
 安装请查看上方anaconda教程，配置好python环境。使用命令pip install matplotlib 或 conda install matplotlib  进行安装。使用时，直接import即可。
 Matplotlib.pyplotMatplotlib 中的 pyplot 模块是一个类似命令风格的函数集合，这使得 Matplotlib 的工作 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/27/git/" title="git">git</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-27T08:28:52.000Z" title="Created 2023-03-27 16:28:52">2023-03-27</time></span></div><div class="content">git远程仓库网址：https://github.com
-张朝阳账户：&#x7a;&#104;&#97;&#x6e;&#x67;&#x7a;&#104;&#97;&#111;&#x79;&#x61;&#110;&#x67;&#64;&#x63;&#x68;&#100;&#46;&#x65;&#100;&#x75;&#46;&#99;&#x6e;   用户名zhzj0218，密码：一般密码
+张朝阳账户：&#x7a;&#x68;&#97;&#x6e;&#x67;&#x7a;&#104;&#x61;&#x6f;&#x79;&#97;&#x6e;&#103;&#64;&#99;&#x68;&#100;&#46;&#101;&#100;&#x75;&#x2e;&#x63;&#110;   用户名zhzj0218，密码：一般密码
 以将&#x2F;d&#x2F;gitproject&#x2F;pycharm_python_and_pyqt中的文件同步到git中的zhzj0218下的pycharm_python_and_pyqt为例
 [TOC]
 查看分支状态git status
@@ -171,7 +230,7 @@ git status 查看当前分支状态
 git add . 把当前文件夹下的文件提交到暂存区
 紧接着git commit -m “提交标签，如first proposed” 把暂存区提交到版本库
 执行git status查看状态，确保工作区是干净的，没有需要提交的内容
-（git log查看提交 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/27/%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" title="基于深度学习的端到端自动驾驶">基于深度学习的端到端自动驾驶</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-27T08:24:47.000Z" title="Created 2023-03-27 16:24:47">2023-03-27</time></span></div><div class="content">基于深度学习的端到端自动驾驶from:欧阳铭  email: &#99;&#x68;&#x64;&#x2d;&#113;&#x69;&#97;&#110;&#109;&#x75;&#64;&#x71;&#113;&#46;&#99;&#111;&#x6d;  qq:3315853846
+（git log查看提 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/27/%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" title="基于深度学习的端到端自动驾驶">基于深度学习的端到端自动驾驶</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-27T08:24:47.000Z" title="Created 2023-03-27 16:24:47">2023-03-27</time></span></div><div class="content">基于深度学习的端到端自动驾驶from:欧阳铭  email: &#99;&#104;&#100;&#45;&#x71;&#x69;&#97;&#110;&#x6d;&#117;&#64;&#x71;&#113;&#46;&#x63;&#111;&#x6d;  qq:3315853846
 特别感谢:钱斌的博客 
 ##1.模拟平台安装和基本使用
 ###1.1模拟器的安装
@@ -206,71 +265,7 @@ SQL
   
   （3） DDL
   ​	查询数据库
-  12show  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="面向对象">面向对象</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-22T12:42:09.000Z" title="Created 2023-03-22 20:42:09">2023-03-22</time></span></div><div class="content">explicit关键字，作为返回值时加上不调用拷贝构造函数。作为类关键字防止被拷贝。
-多态父类指针指向子类对象
-父类提供virtual 虚函数，子类对象实现
-析构函数加virtual，可以调用子类的析构函数
-构造函数前不能加virtual，因为构造函数执行后，虚表才出现
-运算符重载
-类中，++i比i++效率高，因为后者还要调用构造函数
-工厂模式用父类指针作为返回值，在返回值创建子类对象
-
-单体模式sizeof、_countof_tscanf_s( _T(“%d”), v1, _countof(v1));
-
-sizeof 数据类型大小与数据大小相乘，实际的数据大小
-countof 数据大小，实际上的数据数量
-结构体对齐大小为4，1，8，按最大的对齐
-
-如上，实际上为16。double占8，另外两个加起来用8
-重载函数名一样，参数类型不同，参数数量不同
-与返回值类型无关
-使用const，发生重载。
-
-const是常对象调用的。
-菱形继承一个派生类D是由多继承产生的，它的多个基类B、C继承了同一个基类A。造成派生类D中具有多份A类的属性，属于一种不合理的现象
-
-会让高层的基类在底层的派生类中 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/22/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" title="智能指针">智能指针</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-22T12:38:10.000Z" title="Created 2023-03-22 20:38:10">2023-03-22</time></span></div><div class="content">智能指针 c++11std::unique_ptr&lt;T&gt; ：独占资源所有权的指针。当我们独占资源的所有权的时候，可以使用 std::unique_ptr 对资源进行管理——离开 unique_ptr 对象的作用域时，会自动释放资源。
-std::unique_ptr 是 move-only 的。
-12std::unique_ptr&lt;int&gt; uptr = std::make_unique&lt;int&gt;(200);std::unique_ptr&lt;int&gt; uptr1 = uptr;  // 编译错误，std::unique_ptr&lt;T&gt; 是 move-only 的
-
-std::unique_ptr 可以指向一个数组。
-可以自定义 deleter。
-12345678910&#123;    struct FileCloser &#123;        void operator()(FILE* fp) const &#123;            if (fp != nullptr) &#123;                fc ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/22/c-20/" title="c++20">c++20</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-22T12:35:37.000Z" title="Created 2023-03-22 20:35:37">2023-03-22</time></span></div><div class="content">语法糖语法糖是指计算机语言中添加的某种语法，这种语法对语言的功能并没有影响，但是更方便程序员使用。
-C++也有很多语法糖，比如运算符重载、lambda表达式、auto类型推导等。这些语法糖可以让我们的代码更简洁、更易读、更高效。例如，下面两种写法是等价的：
-12345678int sum = 0;for (int i = 0; i &lt; 10; i++) &#123;  sum += i;&#125;int sum = 0;for (auto i : &#123;0,1,2,3,4,5,6,7,8,9&#125;) &#123;  sum += i;&#125;
-
-c++11、20新特性大多数都是语法糖
-c++20C++20有很多新的特性，其中最重要的四个是概念、范围、协程和模块。概念可以让我们定义泛型函数或类的约束条件，范围可以让我们更方便地操作容器和迭代器，协程可以让我们编写异步代码，模块可以让我们更高效地组织代码[。除此之外，C++20还有一些其他的新特性，比如三向比较运算符、指定初始化、日历和时区功能等。
-概念概念是一种用来约束模板类型的语法糖。我们可以用concept关键 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/22/%E5%BC%95%E7%94%A8/" title="引用">引用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-22T11:39:05.000Z" title="Created 2023-03-22 19:39:05">2023-03-22</time></span></div><div class="content">指针与引用引用必须要初始化。
-指针会根据编译器不同而变化，32位4字节，64位8字节
-引用根据被引用的数据类型变化
-int*&amp; 指针的引用 以指针来判断。
-右值引用 c++11
-左值：可以长时间保存，可以存在于&#x3D;左边的值，可以取地址；
-右值：临时值，不能存在于&#x3D;左边的值，不可以取地址。
-
-左值引用，实际上是取地址赋给新的变量。必须初始化。
-常引用，用于引用部分右值，不可进行更改。实际上是使用一个临时变量与一块临时内存进行存储，必须初始化。可以引用左与右。
-
-右值引用原理相近，临时内存的地址无法获取，但是可以对临时内存里面的内容进行修改。
-12int&amp;&amp; v1 = 10;v1++;
-
-  右值引用是C++11新特性，之所以引入右值引用，是为了提高效率。如下面所示：
-1234567891011121314151617181920212223242526272829303132333435363738394041class A&#123;public:	A(size_t N):m_p(new char[N])	&#123;	&#125;	A(con ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/20/hexo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" title="hexo快速入门">hexo快速入门</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-20T03:34:10.000Z" title="Created 2023-03-20 11:34:10">2023-03-20</time></span></div><div class="content">安装安装node.js安装git安装hexo
-
-新开一个文件夹，右键，在这里打开git bash
-12npm install -g hexo-clinpm install --save hexo-deployer-git
-
-配置github SSHssh可以免密的将本地的源码和资源上传到github，无需要每次都输账号和密码。
-12cd ~ssh-keygen -t rsa -C &quot;邮件地址&quot;
-
-在用户文件夹下生成了一个.ssh文件夹，进入，复制.pub文件中全部内容
-打开github主页，点击个人设置，点击左侧的SSH and GPG keys，点击New SSH key
-将id_rsa.pub复制的内容粘贴到key中，title随便起一个就行。
-配置好用户名和邮箱
-12git config --global user.name &quot;xxx&quot; #你的github用户名git config --global user.email &quot;xxx@163.com&quot; #填写你的github注册邮箱
-
-写个人博客初始化12hexo init ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/matplotlib/" title="matplotlib">matplotlib</a><time datetime="2023-04-01T09:44:40.000Z" title="Created 2023-04-01 17:44:40">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/27/git/" title="git">git</a><time datetime="2023-03-27T08:28:52.000Z" title="Created 2023-03-27 16:28:52">2023-03-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/27/%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" title="基于深度学习的端到端自动驾驶">基于深度学习的端到端自动驾驶</a><time datetime="2023-03-27T08:24:47.000Z" title="Created 2023-03-27 16:24:47">2023-03-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/27/MySQL/" title="MySQL">MySQL</a><time datetime="2023-03-27T08:20:58.000Z" title="Created 2023-03-27 16:20:58">2023-03-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="面向对象">面向对象</a><time datetime="2023-03-22T12:42:09.000Z" title="Created 2023-03-22 20:42:09">2023-03-22</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/c/" style="font-size: 1.1em; color: #999">c++</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">March 2023</span><span class="card-archive-list-count">8</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">9</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-04-01T09:49:52.827Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  12show  ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/MD5/" title="MD5">MD5</a><time datetime="2023-04-01T12:50:07.000Z" title="Created 2023-04-01 20:50:07">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/BFS/" title="BFS">BFS</a><time datetime="2023-04-01T12:39:09.000Z" title="Created 2023-04-01 20:39:09">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/SHA1/" title="SHA1">SHA1</a><time datetime="2023-04-01T12:27:59.000Z" title="Created 2023-04-01 20:27:59">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/DFS/" title="DFS">DFS</a><time datetime="2023-04-01T12:15:41.000Z" title="Created 2023-04-01 20:15:41">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/RC4/" title="RC4">RC4</a><time datetime="2023-04-01T12:08:51.000Z" title="Created 2023-04-01 20:08:51">2023-04-01</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/c/" style="font-size: 1.1em; color: #999">c++</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">March 2023</span><span class="card-archive-list-count">8</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">15</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-04-01T12:51:02.860Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
   init: (str) => {
     window.typed = new Typed('#subtitle', Object.assign({
       strings: str,
