@@ -52,7 +52,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-02-04 19:57:18'
+  postUpdate: '2024-02-04 21:12:20'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -157,122 +157,115 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="qianmu's blog" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="qianmu's blog"><span class="site-name">qianmu's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">qianmu's blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/MD5/" title="MD5">MD5</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:50:07.000Z" title="Created 2023-04-01 20:50:07">2023-04-01</time></span></div><div class="content">加密MD5是一种哈希算法，任意长度的输入经过处理后输出为128位的信息，且尽量使结果不冲突和信息不可逆。MD5以512位为一个分组处理输入，每个分组分成16个32位的子分组，经过处理后，输出四个32位分组，这四个32位分组级联后生成一个128位的MD5值
-MD5的特点单向散列算法：将一种任意长度的消息数据压缩到某一固定长度，该过程是不可逆的。
- MD5 Message Digest Algorithm 是对任意长度的消息进行运算，产生一个128位的消息摘要。
- 压缩性:任意长度的数据，算出的MD5值长度都是固定的。
- 容易计算:从原数据计算出MD5值很容易。
- 抗修改性:对原数据进行任何改动，哪怕只修改1个字节，所得到的MD5值都有很大区别。
- 强抗碰撞:已知原数据和其MD5值，想找到一个具有相同MD5值的数据(即伪造数据)是非常困难的。
-MD5的作用是让大容量信息在用数字签名软件签署私人密钥前被”压缩”成一种保密的格式(就是把一个任意长度的字节串变换成一定长的十六进制数字串)。
-在内存中是小端序存储
-将原始数据每512bits为一个分组 (这就是前面要求填充到512整数倍的原因)，对 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/BFS/" title="BFS">BFS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:39:09.000Z" title="Created 2023-04-01 20:39:09">2023-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Algorithms/">Algorithms</a></span></div><div class="content">BFS解决迷宫问题迷宫问题Crawling in process… Crawling failed Time Limit:1000MS    Memory Limit:65536KB     64bit IO Format:%I64d &amp; %I64uSubmit StatusDescription
-定义一个二维数组：
-int maze [5] [5] &#x3D; {
- 0, 1, 0, 0, 0,
- 0, 1, 0, 1, 0,
- 0, 0, 0, 0, 0,
- 0, 1, 1, 1, 0,
- 0, 0, 0, 1, 0,
-};
-它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的最短路线。      
-输入
-一个5 × 5的二维数组，表示一个迷宫。数据保证有唯一解。      
-输出
-左上角到右下角的最短路径
-解题思路使用结构体来保存横纵坐标即(x,y)，输出没要求距离长度，定义一个step保存长度也可以
-创建一个队列 queue q;
-12345678910while(q不为空)&#123;if(到达右下角) ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/SHA1/" title="SHA1">SHA1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:27:59.000Z" title="Created 2023-04-01 20:27:59">2023-04-01</time></span></div><div class="content">SHA1安全哈希算法（Secure Hash Algorithm）主要适用于数字签名标准（Digital Signature Standard DSS） 里面定义的数字签名算法（Digital Signature Algorithm DSA）。
-该算法输入报文的长度不限，产生的输出是一个160位的报文摘要。输入是按512 位的分组进行处理的。SHA-1是不可逆的、防冲突，并具有良好的雪崩效应。
- 算法： 1.数据末尾填充0x80 39 31 31 4d 61 6f 48 61 69      “911MaoHai” 39 31 31 4d 61 6f 48 61 69 80 9 * 8 &#x3D; 72   2.计算原始数据的长度 72 &#x3D; 0x00 00 00 00 00000048 39 31 31 4d 61 6f 48 61 69 80 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/DFS/" title="DFS">DFS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:15:41.000Z" title="Created 2023-04-01 20:15:41">2023-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Algorithms/">Algorithms</a></span></div><div class="content">DFS一.深度优先搜索（dfs）1.什么叫dfs深度优先搜索类似于树的先序遍历；
-是利用栈或者递归的方式实现的，体现出了后进先出的特点；
-通俗来说就是一次访问一条路，一直朝着一个方向探索，直到遇到死路退回到前一个分支，继续探索；
-一般来说，深度搜索解决的问题主要为寻求所有解和连通性。
-2.遍历过程（1）从图中某个初始顶点v出发，首先访问初始顶点v。
-（2）然后依次从v的未被访问的邻接点w，再从w出发进行深度优先遍历，直到图中所有与v有路径相通的的顶点都被访问过为止。
-3.算法设计解决问题:（1）如何确定一个顶点是否访问过？
-设置一个visited[]全局数组，
-visited[i]&#x3D;0表示顶点i没有访问;
-visited[i]&#x3D;1表示顶点i已经访问过。
-（在图中也可以修改图本身来实现）
-4.dfs算法模板1234567891011121314151617void dfs(int s)&#123;	if(找到解了)	&#123;		相应的操作；		return ；	&#125;	尝试每一种可能	&#123;		if(满足条件)		&#123;			标记走过；			进行 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/RC4/" title="RC4">RC4</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:08:51.000Z" title="Created 2023-04-01 20:08:51">2023-04-01</time></span></div><div class="content">RC4什么是RC4 ? RC4加密算法是大名鼎鼎的RSA三人组中的头号人物Ron Rivest在1987年设计的密钥长度可变的流加密算法簇，之所以称其为簇，是由于其核心部分的S-box长度可为任意，但一般为256字节。
- 在密码学中，RC4（来自Rivest Cipher 4的缩写）是一种流加密算法，密钥长度可变。它加解密使用相同的密钥，因此也属于对称加密算法。所谓对称加密，就是加密和解密的过程是一样的。RC4是有线等效加密（WEP）中采用的加密算法，也曾经是TLS可采用的算法之一。
- RC4已经成为一些常用的协议和标准的一部分，如1997年的WEP和2003&#x2F;2004年无线卡的WPA; 和1995年的SSL，以及后来1999年的TLS。让它如此广泛分布和使用的主要因素是它不可思议的简单和速度，不管是软件还是硬件，实现起来都十分容易。
-基本原理对明文使用同一个密钥异或两次最后得到的是原文
-
-加密：原文和Keystream进行异或得到密文
-解密：密文和Keystream进行异或得到原文
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="qianmu's blog"><span class="site-name">qianmu's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">qianmu's blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/02/04/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" title="线程池">线程池</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-04T13:08:39.000Z" title="Created 2024-02-04 21:08:39">2024-02-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Windows-Programming/">Windows Programming</a></span></div><div class="content">线程池处理大量的数据
+线程池是可用于执行任务的线程的集合。这是一种管理和重用线程的方法，可以减少创建和销毁线程的开销。
+在线程池中，会创建和维护固定数量的线程。当任务提交到线程池时，将分配一个可用线程来执行该任务。一旦任务完成，线程就会返回到池中，并可用于执行另一个任务。
+线程池通常用于需要同时执行多个任务的应用程序。它们可以通过减少创建和销毁线程的开销，以及允许并行执行任务来提高性能。ThreadPoolExecutor类用于创建和管理线程池，submit方法用于将任务提交到池中执行。以下是如何使用ThreadPoolExecutor类创建线程池的示例：
+12345678from concurrent.futures import ThreadPoolExecutor# Create a thread pool with 4 threadswith ThreadPoolExecutor(max_workers=4) as executor:    # Submit a task to the pool    future = executor.submit(my_function,  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/02/04/VT-x/" title="VT-x">VT-x</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-04T13:02:40.000Z" title="Created 2024-02-04 21:02:40">2024-02-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Windows-Kernel/">Windows Kernel</a></span></div><div class="content">虚拟化目录（点击跳转）
 
 
-流程图解
-生成秘钥流（KeyStream）从上图可以看出来，RC4加密原理很简单，只需要 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/AvlTree/" title="AvlTree">AvlTree</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T12:02:12.000Z" title="Created 2023-04-01 20:02:12">2023-04-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Algorithms/">Algorithms</a></span></div><div class="content">AvlTree定义AVL 树是一种平衡二叉树，得名于其发明者的名字（ Adelson-Velskii 以及 Landis）。（可见名字长的好处，命名都能多占一个字母出来）。平衡二叉树递归定义如下：
-
-左右子树的高度差小于等于 1。
-其每一个子树均为平衡二叉树。
-
-平衡因子： 某个结点的左子树的高度减去右子树的高度得到的差值。
-AVL 树： 所有结点的平衡因子的绝对值都不超过 1 的二叉树。
-为了计算平衡因子，我们自然需要在节点中引入高度这一属性。在这里，我们把节点的高度定义为其左右子树的高度的最大值。因此，引入了高度属性的 AVL 树的节点定义如下：
-123456typedef struct node &#123;    int             data;    int             height;    struct node     *left;    struct node     *right;&#125;node_t, * nodeptr_t;
-
-计算某一个节点的高度
-1234567int treeHeight(nodeptr_t root) &#123;  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/04/01/matplotlib/" title="matplotlib">matplotlib</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-04-01T09:44:40.000Z" title="Created 2023-04-01 17:44:40">2023-04-01</time></span></div><div class="content">matplotlibwhy matplotlib?如果您使用过“工科神器”MATLAB，您一定会惊叹于MATLAB中惊人的可视化能力，其中的函数绘图，成为了无数SCI论文中真实数据配图的来源。小小的plot函数，画出了人类先进科学进步的曲线。
-python中的matplotlib库，与MATLAB中的plot函数有点像，也许这正是它名字的来源。这是一个2D绘图库，利用它可以画出许多高质量的图像。只需几行代码即可生成直方图，条形图，饼图，散点图等。Matplotlib可用于Python脚本，Python和IPython shell，Jupyter笔记本，Web应用程序服务器和四个图形用户界面工具包。
-希望以下教程可以为您带来一些帮助。
-安装请查看上方anaconda教程，配置好python环境。使用命令pip install matplotlib 或 conda install matplotlib  进行安装。使用时，直接import即可。
-Matplotlib.pyplotMatplotlib 中的 pyplot 模块是一个类似命令风格的函数集合，这使得 Matplotlib 的工作 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/27/git/" title="git">git</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-27T08:28:52.000Z" title="Created 2023-03-27 16:28:52">2023-03-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Basic/">Basic</a></span></div><div class="content">git远程仓库网址：https://github.com
-张朝阳账户：&#122;&#x68;&#97;&#110;&#103;&#122;&#x68;&#97;&#111;&#x79;&#x61;&#110;&#103;&#64;&#99;&#104;&#x64;&#46;&#x65;&#100;&#x75;&#x2e;&#x63;&#x6e;   用户名zhzj0218，密码：一般密码
-以将&#x2F;d&#x2F;gitproject&#x2F;pycharm_python_and_pyqt中的文件同步到git中的zhzj0218下的pycharm_python_and_pyqt为例
 [TOC]
-查看分支状态git status
-创建版本库git init 把当前的目录变成Git管理的版本库
-git status 查看当前分支状态
-git add . 把当前文件夹下的文件提交到暂存区
-紧接着git commit -m “提交标签，如first proposed” 把暂存区提交到版本库
-执行git status查看状态，确保工作区是干净的，没有需要提交的内容
-（git log查看提 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/27/%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" title="No title">No title</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-27T08:24:47.081Z" title="Created 2023-03-27 16:24:47">2023-03-27</time></span></div><div class="content">基于深度学习的端到端自动驾驶from:欧阳铭  email: &#99;&#104;&#100;&#x2d;&#113;&#x69;&#x61;&#x6e;&#x6d;&#x75;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#109;  qq:3315853846
-特别感谢:钱斌的博客 
-##1.模拟平台安装和基本使用
-###1.1模拟器的安装
-下载地址：右键或点击此处或按住ctrl+&#x2F;进入代码模式，复制链接到浏览器打开。
+
+
+检查硬件虚拟化12345678BOOLEAN HvmIsHVSupported()&#123;    CPU_VENDOR vendor = UtilCPUVendor();// CPU供应商    if (vendor == CPU_Intel)        return VmxHardSupported();    return TRUE;&#125;
+
+UtilCPUVendor获取CPU制造商信息1234567891011121314151617181920/// &lt;summary&gt;/// Get CPU vendor/// &lt;/summary&gt;/// &lt;returns&gt;Intel or AMD. If failed - Other&lt;/returns&gt;CPU_VENDOR UtilCPUVendor()&#123;    CPUID data = &#123; 0 &#125;;    char vendor[0x20] = &#123; 0 &#125;;    __cpuid( ( ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/02/04/TLS/" title="TLS">TLS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-04T13:01:16.000Z" title="Created 2024-02-04 21:01:16">2024-02-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Windows-Programming/">Windows Programming</a></span></div><div class="content">TLS线程局部存储，TLS
+
+如何使用TLS
+有静态方法和动态方法
+
+静态方法 把全局变量数据类型前添加 __declspec(thread) 关键字，同一变量在不同的线程中各自使用自己的那一份，不同的线程间不会互相影响
+使用这种方法，生成的PE文件在节头中会有.tls头
+动态方法 存放索引 使用一个普通的全局变量，在创建线程前创建一个独立的索引 __ v2&#x3D;TlsAlloc()，根据索引设置数组的值 TlsSetValue( __ v2, 0) ,使用时使用a &#x3D; TlsGetValue(__ v2)获取
+理论上没有.tls头出现，但是测试失败
+TLS回调
+
+调用约定为NTAPI，即_stdcall 
+只要有线程启动或销毁会自动调用线程回调，比EP进程初始化还要早（比主函数启动还早），许多逆向分析人员把这个特性用于反调试
+TLS目录使用内存映射的方法进行分析 相当于系统自动申请内存，不用自己手动申请内存。获取内存映射句柄，使用MapViewOfFile获取虚拟地址位置  
+都是文件粒度对齐
+对大文件操作效率更高
+
+将内存粒度转换为文件粒度
+
+
+DumpTlsDir ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/02/04/Hook%E8%AE%A1%E7%AE%97%E5%99%A8%E4%BB%A5%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%95%B0%E5%AD%97/" title="Hook计算器以显示中文数字">Hook计算器以显示中文数字</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-04T12:55:21.000Z" title="Created 2024-02-04 20:55:21">2024-02-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Windows-Programming/">Windows Programming</a></span></div><div class="content">计算器显示中文数字HookLet注入DLL.dll到计算器程序
+找到导入表描述，在FirstThunk中把user32.dll文件中导出函数地址改为自己的DLL.dll导出函数的地址
+计算器点击数字调用的函数为SetWindowText
+注入方式有两种，CreateRemoteThread远程线程，SetWindowHookEx全局钩子
+提权，开启UAC 管理员身份运行
+可以在项目右键属性，链接器，清单文件，打开UAC运行级别即可
+
+这里使用远程线程注入，填写动态库的完整路径申请内存，在对方进程中开启新的线程，得到LoadLibrary地址，执行LoadLibrary加载自己的动态库
+得到自己动态库的完整路径
+得到PID
+申请虚拟内存
+将路径写入虚拟内存
+启动线程
+从目标进程中的user32模块导出表中获取SetWindowText函数地址
+获得进程中第一个模块Taskmgr.exe地址
+定位到导入表描述
+该模块是加载状态的，因此定位到FirstThunk，里面已经变为真正的函数地址，判断是否为空
+定位到模块名
+比较得到与我们要感染的模块相同，此时ImageImportDescript ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/02/04/PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="PE文件格式">PE文件格式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-04T12:51:11.000Z" title="Created 2024-02-04 20:51:11">2024-02-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Reverse/">Reverse</a></span></div><div class="content">PE此文章为自查文章，部分内容没有详细解释。具体概念出自李承远《逆向工程核心原理》。
+.exe .dll .sys
+PE或PE+，注意没有PE64
+C:\Windows\system32\notepad.exe &#x2F;&#x2F;32位
+C:\Windows\syswow64\notepad.exe &#x2F;&#x2F;64位
+PE文件的标志
+
+PE格式文件加载到内存中的情形
+
+DOS头 windows.h中有定义  _IMAGE_DOS_HEADE
+NULL区域是未使用的区域用0填充的，补齐文件或内存粒度对齐
+重点关注0x00 word e_magic&#x3D;0x5a4d 对应MZ, 和dword(long)0x3c e_ifanew, (PIMAGE_NT_HEADERS）(BYTE)ImageDosHeader+(ImagerDosHeader-&gt;e_ifanew)就是NT_Headers的地址* 
+64位下的地址为8字节，32位为4字节，如果文件是64位，则4字节定位的地址必为RVA
+32、64位的最大区别是NT_HEADERS后面是否跟数字64
+NtHea ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/02/04/%E5%9B%9B%E7%A7%8D%E8%8E%B7%E5%8F%96%E7%9B%AE%E6%A0%87%E8%BF%9B%E7%A8%8B%E5%AF%BC%E5%85%A5DLL%E6%A8%A1%E5%9D%97%E5%9C%B0%E5%9D%80%E7%9A%84%E6%96%B9%E6%B3%95/" title="四种获取目标进程导入DLL模块地址的方法">四种获取目标进程导入DLL模块地址的方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-04T12:47:05.000Z" title="Created 2024-02-04 20:47:05">2024-02-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Windows-Programming/">Windows Programming</a></span></div><div class="content">四种获取目标进程导入DLL模块地址的方法本人在校大学生一枚，技术不太行，各位师傅将就看看。
+1. 获取进程快照tlhelp32.h头文件中，提供了CreateToolhelp32SnapshotAPI，可以获取获取指定进程以及这些进程使用的堆、模块和线程的快照。
+1234HANDLE CreateToolhelp32Snapshot(  [in] DWORD dwFlags,  [in] DWORD th32ProcessID);
+
+
+在进程快照信息中，包含着进程导入模块的信息。因此，我们可以有如下实现思路：
+
+调用CreateToolhelp32Snapshot指定TH32CS_SNAPPROCESS属性，获取进程快照句柄。
+使用Process32Next遍历进程信息，对比进程名查找到目标进程。
+使用OpenProcess验证目标进程状态。
+调用CreateToolhelp32Snapshot指定TH32CS_SNAPMODULE属性，获取目标进程的模块快照。
+使用Module32Next遍历模块，直到获取到目标模块信息，返回目标模块的句柄。
+后续干什么都可以了，例如使用GetPro ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/02/04/%E7%9B%AE%E6%A0%87%E8%BF%9B%E7%A8%8B%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F%E5%8F%A5%E6%9F%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%86%85%E6%A0%B8%E5%8F%A5%E6%9F%84/" title="目标进程用户模式句柄转换为内核句柄">目标进程用户模式句柄转换为内核句柄</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-04T12:45:37.000Z" title="Created 2024-02-04 20:45:37">2024-02-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Windows-Kernel/">Windows Kernel</a></span></div><div class="content">目标进程用户模式句柄转换为内核句柄网上很多方法都是Ring0内核进程和句柄互相转换的方法，查了一下没怎么看到说怎么将用户模式句柄转换为内核句柄的。如果内核获取到的是目标进程的句柄，拷贝到内核模式是不能直接使用的，会引发异常。
+目前想到的实现思路是：
+
+如果是伪句柄，直接返回后面再来处理。
+调用ObReferenceObjectByHandle指定用户模式句柄获取任意对象的体指针  （EProcess、EThread ）
+调用ObOpenObjectByPointer打开指针所引用的对象，并返回对象的句柄，此时设置为内核句柄。就获取到啦。
+
+本人是菜鸟，各位师傅如果知道其他的方法跪求指点！！！
+实现代码：
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758NTSTATUS ConvertKernelHandle(    IN HANDLE    UserHandle,    OUT PHANDLE  KernelHandle, ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/02/04/%E5%9F%BA%E4%BA%8ECALRA%E5%92%8CDQN%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E7%9A%84%E4%BB%BF%E7%9C%9F/" title="基于CALRA和DQN实现自动驾驶的仿真">基于CALRA和DQN实现自动驾驶的仿真</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-04T12:43:53.000Z" title="Created 2024-02-04 20:43:53">2024-02-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI/">AI</a></span></div><div class="content">基于carla与DQN实现自动驾驶的仿真
+1. 安装1.1 配置虚拟环境在anaconda prompt逐条运行下面命令，单独配置虚拟环境。car是名字，可以自己取，但是python必须是3.7。创建好后使用pip命令下载配置所有的库（方便换源，conda换源不太方便）。
+123conda create -n car python=3.7conda activate carpip install carla,pygame,numpy
+
+1.2 配置carla模拟器CARLA Simulator 点击进入官网，可以查看版本信息与官方文档。官方文档是我们学习的基础。下载模拟器时，应该进入官网查看最新版本，再前往carla的github主页进行下载，确保下载的是最新版本。因为只有最新版本的carla能通过pip命令安装依赖库，其他版本的安装非常繁琐（在下面第三大点有详细描述）。版本错误程序会直接崩溃。Releases · carla-simulator&#x2F;carla (github.com) 根据版本下载对应的压缩包或使用git命令克隆下来。注意carla只支持Linux的乌班图系统 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/02/04/%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/" title="基于深度学习的端到端自动驾驶">基于深度学习的端到端自动驾驶</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-04T12:42:03.000Z" title="Created 2024-02-04 20:42:03">2024-02-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AI/">AI</a></span></div><div class="content">基于深度学习的端到端自动驾驶主体来源:钱斌的博客 
+1.模拟平台安装和基本使用1.1模拟器的安装下载地址：右键或点击此处或按住ctrl+&#x2F;进入代码模式，复制链接到浏览器打开。
 该地址中提供的模拟器是基于Unity开发的，是经过删减过后的可执行程序，不再需要额外安装unity，下载下来后就可以直接运行。目前覆盖windows、Linux、Mac共3个版本。以下只讲解如何在windows平台上运行和使用该模拟器。
 下载完成后运行donkey_sim.exe文件即可进入模拟器。左边是设置，根据自己的需要进行设置即可。
-在场景中，如果我们前面主界面使用了手工模式（paceCar处勾选manualDriving），那么我们就可以通过键盘来操控小车进行体验了。与一般的赛车游戏类似，W键表示前进，A表示左转，D表示 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/03/27/MySQL/" title="MySQL">MySQL</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-03-27T08:20:58.000Z" title="Created 2023-03-27 16:20:58">2023-03-27</time></span></div><div class="content">
-安装
+在场景中，如果我们前面主界面使用了手工模式（paceCar处勾选manualDriving），那么我们就可以通过键盘来操控小车进行体验了。与一般的赛车游戏类似，W键表示前进，A表示左转，D表示右转，S表示后退。
+在该模拟器中，控制小车的主要是两个参数：油门（W和S键）和转向角度（A和D键），这个与我们真实驾驶的汽车基本一致：挂挡+踩油门来控制前进动力，打方向盘控制车辆转向。为了能够实现自动驾驶，我们首先要能够根据这两个参数去控制模拟器里面小车的运行。我们怎么样通过Py ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/02/04/%E6%A0%88%E6%BA%A2%E5%87%BA/" title="栈溢出">栈溢出</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2024-02-04T12:38:23.000Z" title="Created 2024-02-04 20:38:23">2024-02-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/PWN/">PWN</a></span></div><div class="content">Windows栈溢出原文链接：Windows 内存损坏漏洞的现代探索 – 第一部分：栈溢出 (cyberark.com)
+代码地址：https://github.com/forrest-orr/ExploitDev
 
-到官网进行安装。点击MySQL Installer for Windows下载安装包后一直next即可。
-
-启动与停止
-
-mysql开机默认启动。
-在win+R运行services.msc，找到mysql右键操作。
-在cmd中运行net start mysql80、net stop mysql80进行启动与停止。
-
-客户端连接
-
-方式一：直接使用mysql提供的命令行进行连接。开始找到MySQL Command Line Client-Unicode，进去输入密码操作。
-方式二：先配置PATH环境变量C:\Program Files\MySQL\MySQL Server 8.0\bin。在任意cmd输入mysql -u root -p，输入密码操作。
-
-MySQL数据库的好处
-
-关系型数据库RDBMS，建立在关系模型基础上，由多张相互连接的二维表组成的数据库。格式统一，便于维护，使用SQL语言操作，使用方便。数据模型是数据库，可以创建多个表。
-
-SQL
-
-  （1） SQL通用语法
-  
-  （2） SQL分类
-  
-  （3） DDL
-  ​	查询数据库
-  12show  ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/MD5/" title="MD5">MD5</a><time datetime="2023-04-01T12:50:07.000Z" title="Created 2023-04-01 20:50:07">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/BFS/" title="BFS">BFS</a><time datetime="2023-04-01T12:39:09.000Z" title="Created 2023-04-01 20:39:09">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/SHA1/" title="SHA1">SHA1</a><time datetime="2023-04-01T12:27:59.000Z" title="Created 2023-04-01 20:27:59">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/DFS/" title="DFS">DFS</a><time datetime="2023-04-01T12:15:41.000Z" title="Created 2023-04-01 20:15:41">2023-04-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/01/RC4/" title="RC4">RC4</a><time datetime="2023-04-01T12:08:51.000Z" title="Created 2023-04-01 20:08:51">2023-04-01</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+前排提示：由于翻译的差异，“栈”与“堆栈”指的实际上是同一个东西，说的都是“stack”，然而，面向大多数刚刚接触编程的同学们，对于“堆”（heap）和“栈”的理解区分至关重要。因此，下文中应为“stack”的地方，统一称作“栈”，但难免有遗漏之处，请读者分清栈或堆栈与堆的区别，并海涵出现的疏忽。
+介绍通过在现代操作系统上使用现代编译器记录自己的一些实验和研究来帮助解决过时的面向初学者的漏洞利用信息的问题。重点是Windows 10和Visual Studio 2019。
+shellcodeshellcode是一段用于利用软件漏洞而执行的代码，shellcode为16进制的机器码，因为经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在寄存器eip溢出后，塞入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。
+she ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" title="线程池">线程池</a><time datetime="2024-02-04T13:08:39.000Z" title="Created 2024-02-04 21:08:39">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/VT-x/" title="VT-x">VT-x</a><time datetime="2024-02-04T13:02:40.000Z" title="Created 2024-02-04 21:02:40">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/TLS/" title="TLS">TLS</a><time datetime="2024-02-04T13:01:16.000Z" title="Created 2024-02-04 21:01:16">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/Hook%E8%AE%A1%E7%AE%97%E5%99%A8%E4%BB%A5%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%95%B0%E5%AD%97/" title="Hook计算器以显示中文数字">Hook计算器以显示中文数字</a><time datetime="2024-02-04T12:55:21.000Z" title="Created 2024-02-04 20:55:21">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="PE文件格式">PE文件格式</a><time datetime="2024-02-04T12:51:11.000Z" title="Created 2024-02-04 20:51:11">2024-02-04</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>Categories</span>
-            
+            <a class="card-more-btn" href="/categories/" title="More">
+    <i class="fas fa-angle-right"></i></a>
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Algorithms/"><span class="card-category-list-name">Algorithms</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Basic/"><span class="card-category-list-name">Basic</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/c/"><span class="card-category-list-name">c++</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/c/" style="font-size: 1.1em; color: #999">c++</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">March 2023</span><span class="card-archive-list-count">8</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">15</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-02-04T11:57:18.807Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Algorithms/"><span class="card-category-list-name">Algorithms</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Basic/"><span class="card-category-list-name">Basic</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C/"><span class="card-category-list-name">C++</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Crypto/"><span class="card-category-list-name">Crypto</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/PWN/"><span class="card-category-list-name">PWN</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">February 2024</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">March 2023</span><span class="card-archive-list-count">7</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">24</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-02-04T13:12:20.755Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
   init: (str) => {
     window.typed = new Typed('#subtitle', Object.assign({
       strings: str,
