@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>PE文件格式 | qianmu's blog</title><meta name="author" content="qianmu"><meta name="copyright" content="qianmu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="PE此文章为自查文章，部分内容没有详细解释。具体概念出自李承远《逆向工程核心原理》。 .exe .dll .sys PE或PE+，注意没有PE64 C:\Windows\system32\notepad.exe &#x2F;&#x2F;32位 C:\Windows\syswow64\notepad.exe &#x2F;&#x2F;64位 PE文件的标志  PE格式文件加载到内存中的情形  DOS头">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PE文件格式">
-<meta property="og:url" content="http://example.com/2024/02/04/PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/index.html">
+<meta property="og:url" content="https://qianmuoy.github.io/2024/02/04/PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/index.html">
 <meta property="og:site_name" content="qianmu&#39;s blog">
 <meta property="og:description" content="PE此文章为自查文章，部分内容没有详细解释。具体概念出自李承远《逆向工程核心原理》。 .exe .dll .sys PE或PE+，注意没有PE64 C:\Windows\system32\notepad.exe &#x2F;&#x2F;32位 C:\Windows\syswow64\notepad.exe &#x2F;&#x2F;64位 PE文件的标志  PE格式文件加载到内存中的情形  DOS头">
 <meta property="og:locale" content="en_US">
@@ -10,7 +10,7 @@
 <meta property="article:modified_time" content="2024-02-04T12:52:50.010Z">
 <meta property="article:author" content="qianmu">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/02/04/PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://qianmuoy.github.io/2024/02/04/PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
@@ -167,18 +167,18 @@
 <p>C:\Windows\system32\notepad.exe &#x2F;&#x2F;32位</p>
 <p>C:\Windows\syswow64\notepad.exe &#x2F;&#x2F;64位</p>
 <p>PE文件的标志</p>
-<p><img src="/.com//image-20220905213538297.png" alt="image-20220905213538297"></p>
+<p><img src="/.io//image-20220905213538297.png" alt="image-20220905213538297"></p>
 <p>PE格式文件加载到内存中的情形</p>
-<p><img src="/.com//image-20220905213651291.png" alt="image-20220905213651291"></p>
+<p><img src="/.io//image-20220905213651291.png" alt="image-20220905213651291"></p>
 <p>DOS头 windows.h中有定义  _IMAGE_DOS_HEADE</p>
 <p>NULL区域是未使用的区域用0填充的，补齐文件或内存粒度对齐</p>
 <p><em><em>重点关注0x00 word e_magic&#x3D;0x5a4d 对应MZ, 和dword(long)0x3c e_ifanew, (PIMAGE_NT_HEADERS）(BYTE</em>)ImageDosHeader+(ImagerDosHeader-&gt;e_ifanew)就是NT_Headers的地址</em>* </p>
 <p>64位下的地址为8字节，32位为4字节，如果文件是64位，则4字节定位的地址必为RVA</p>
 <p>32、64位的最大区别是NT_HEADERS后面是否跟数字64</p>
 <p>NtHeaders除了signature签名还有file optional header两个成员，往下是section header signature里是四个字节的dword或long的PE00，即0x005040</p>
-<p><img src="/.com//image-20220905215743384.png" alt="image-20220905215743384"></p>
+<p><img src="/.io//image-20220905215743384.png" alt="image-20220905215743384"></p>
 <p>VA是虚拟内存的绝对地址，RVA是相对虚拟地址 RVA+ImageBase &#x3D; VA</p>
-<p><img src="/.com//image-20220905220631629.png" alt="image-20220905220631629"></p>
+<p><img src="/.io//image-20220905220631629.png" alt="image-20220905220631629"></p>
 <p>PE头内部信息大多以RVA形式存在，因为PE文件被加载到内存空间的时候，每一次的绝对地址都是不一样的。32位WindowsOS中，各进程分配有4GB内存，即VA的值最多到FFFFFFFF</p>
 <p>0-2^32-1  0-0xFFFFFFFF-1</p>
 <p>0-2^64-1  0-0xFFFFFFFFFFFFFFFF-1但现在16进制还不使用前四个F。64位下的0是0xFFFF 0000 0000 0000，也就是只用到2^48-1</p>
@@ -187,36 +187,36 @@
 
 <p>文件头成员</p>
 <p>mechine 可以判断位数。IMAGE_FILE_MACHINE_I386, IMAGE_FILE_MACHINE_IA64, IMAGE_FILE_MACHINE_AMD64。</p>
-<p><img src="/.com//image-20220909212322047.png" alt="image-20220909212322047"></p>
+<p><img src="/.io//image-20220909212322047.png" alt="image-20220909212322047"></p>
 <p>因此32位文件，必须在文件头中的sizeofoptional成员，等于32位的结构体。</p>
 <p>可以通过判断characteristics的值，判断该文件的具体属性，0x2（IMAGE_FILE_EXECUTABLE_IMAGE）是exe，0x2000（IMAGE_FILE_DLL）是dll，0x1000（IMAGE_FILE_SYSTEM）是sys。文件可能有多属性，判断时用与运算。这个数字可能有多个属性组成，随便写一个按f12进去看定义可以寻找</p>
 <p>32和64位的区别就在于选项头ImageOptionalHeader。</p>
-<p><img src="/.com//image-20220909221218017.png" alt="image-20220909221218017"></p>
-<p><img src="/.com//image-20220919221914062.png" alt="image-20220919221914062"></p>
-<p><img src="/.com//image-20220919211254300.png" alt="image-20220919211254300"></p>
+<p><img src="/.io//image-20220909221218017.png" alt="image-20220909221218017"></p>
+<p><img src="/.io//image-20220919221914062.png" alt="image-20220919221914062"></p>
+<p><img src="/.io//image-20220919211254300.png" alt="image-20220919211254300"></p>
 <p>OEP，程序执行的代码起始地址，是一个RVA，加上基地址ImageBase是程序的执行入口</p>
 <p>ImageBase是一个绝对地址VA，预设加载值，当PE文件真正开始执行时，就优先放到ImageBase，否则就向下顺延。</p>
-<p><img src="/.com//image-20220919221512162.png" alt="image-20220919221512162"></p>
+<p><img src="/.io//image-20220919221512162.png" alt="image-20220919221512162"></p>
 <p>读取文件到内存里，节区对齐力度是按百对齐 ImageOptionalHeader-&gt;FileAlignment&#x3D;&#x3D;200，节区在磁盘文件中的最小单位</p>
 <p>PE加载器加载、exe加载dll文件等，驱使PE文件变为运行状态，节区对齐粒度是按千对齐，ImageOpetionalHeader-&gt;SectionAlignment&#x3D;&#x3D;1000 节区在内存中的最小单位</p>
 <p><strong>所有在PE文件中定义成RVA的成员，都必须以内存力度（按千）对齐结构为基础进行VA值得获取</strong></p>
-<p><img src="/.com//image-20220919222939288.png" alt="image-20220919222939288"></p>
+<p><img src="/.io//image-20220919222939288.png" alt="image-20220919222939288"></p>
 <p>Subsystem可以判断文件类型。0是unknown gui文件有define为IMAGE_SUBSYSTEM_WINDOWS_GUI，按f12进入看其他的</p>
 <p>NumberOfRvaAndSizes一般是16，但也有可能不是</p>
 <p>有#define IMAGE_NUMBER_DIRECTOY_NUMS 16</p>
 <p>重点：</p>
 <p>DataDirectory 设计16成员组成的数组，每个结构体内有两个成员:VirtualAddress(RVA), ViewSize(Size)，0-15</p>
-<p><img src="/.com//image-20230214020404518.png" alt="image-20230214020404518"></p>
-<p><img src="/.com//image-20220921212701408.png" alt="image-20220921212701408"></p>
+<p><img src="/.io//image-20230214020404518.png" alt="image-20230214020404518"></p>
+<p><img src="/.io//image-20220921212701408.png" alt="image-20220921212701408"></p>
 <p>在NtHeaders内有一个Signature成员，使用Signature+OptionalHeaders（选项头之前的大小）+SizeOfOptionalHeaders（选项头自身的大小）就可以定位到SectionHeaders(IMAGE_FIRST_SECTION(ImageNtHeaders);)</p>
-<p><img src="/.com//image-20221127212121731.png" alt="image-20221127212121731"></p>
+<p><img src="/.io//image-20221127212121731.png" alt="image-20221127212121731"></p>
 <p>微软自带的计算偏移的宏FIELD_OFFSET(type, v1);返回值为long型，可以得到v1在type类型中的偏移。</p>
 <p>ImageFileHeader中有一个成员是NumberOfSections，代表有多少个节。ImageSectionHeader的Name成员是节的名字，由8个字节构成，如.text</p>
-<p><img src="/.com//image-20220921214700402.png" alt="image-20220921214700402"></p>
-<p><img src="/.com//image-20221127213230589.png" alt="image-20221127213230589"></p>
-<p><img src="/.com//image-20220921214759832.png" alt="image-20220921214759832"></p>
+<p><img src="/.io//image-20220921214700402.png" alt="image-20220921214700402"></p>
+<p><img src="/.io//image-20221127213230589.png" alt="image-20221127213230589"></p>
+<p><img src="/.io//image-20220921214759832.png" alt="image-20220921214759832"></p>
 <p>节区头中的重要成员，分别是真实大小(没有填充过的)，内存粒度，文件粒度，文件粒度</p>
-<p><img src="/.com//image-20220921222121985.png" alt="image-20220921222121985"></p>
+<p><img src="/.io//image-20220921222121985.png" alt="image-20220921222121985"></p>
 <p>节头中有个联合体misc，其中virtualSize是真实节大小</p>
 <p>VirtualAddress RVA 按千对齐 节的起始位置</p>
 <p>SizeOfRawData 节的大小，按200对齐</p>
@@ -226,43 +226,43 @@
 <p><strong>内存粒度RVA计算文件粒度公式</strong></p>
 <p>如果传入的rva比第一个ImageSectionHeader的pointer to raw data还要小，说明这是一个头部的rva，两边一样，直接返回。否则开始扫描传入的rva属于第几个节。如果size of raw data有值，则把它放进limit变量中（按文件粒度对齐后的节大小），若没有就放入virtual size。如果rva在section header中的virtual address与virtual address+limit之间，则就是在这个区域中。</p>
 <p>rva-VirtualAddress+PointToRawData&#x3D;offset</p>
-<p><img src="/.com//image-20220926213113330.png" alt="image-20220926213113330"></p>
-<p><img src="/.com//image-20220926214809108.png" alt="image-20220926214809108"></p>
+<p><img src="/.io//image-20220926213113330.png" alt="image-20220926213113330"></p>
+<p><img src="/.io//image-20220926214809108.png" alt="image-20220926214809108"></p>
 <p>IAT   导入表</p>
-<p><img src="/.com//image-20220926220732761.png" alt="image-20220926220732761"></p>
-<p><img src="/.com//image-20220926222012185.png" alt="image-20220926222012185"></p>
+<p><img src="/.io//image-20220926220732761.png" alt="image-20220926220732761"></p>
+<p><img src="/.io//image-20220926222012185.png" alt="image-20220926222012185"></p>
 <p>导入函数的汇编，32位下是绝对地址，64位下是相对地址，当前地址加偏移加字节数（6）。所有API的调用均采用这种方式。</p>
-<p><img src="/.com//image-20221002193052700.png" alt="image-20221002193052700"></p>
-<p><img src="/.com//image-20221002193042925.png" alt="image-20221002193042925"></p>
-<p><img src="/.com//image-20221002193334312.png" alt="image-20221002193334312"></p>
+<p><img src="/.io//image-20221002193052700.png" alt="image-20221002193052700"></p>
+<p><img src="/.io//image-20221002193042925.png" alt="image-20221002193042925"></p>
+<p><img src="/.io//image-20221002193334312.png" alt="image-20221002193334312"></p>
 <p>动态库的基地址在不同的区域中，不一定在同一个地方</p>
 <p>编译生成exe的时候，系统就会生成一个ImageBase，32位下一般是0x400000，dll一般是0x1000000</p>
 <p>exe文件有导入表IAT，一般在txt节中。在DataDirectory的16成员中，第二成员指向导入表的位置。即定位到</p>
 <p>IMAGE_IMPORT_DESCRIPTOR 导入表描述</p>
-<p><img src="/.com//image-20221002201505020.png" alt="image-20221002201505020"></p>
+<p><img src="/.io//image-20221002201505020.png" alt="image-20221002201505020"></p>
 <p>结构体中的Name是单字string，存放的是RVA。RVA在32、64下都是四个字节。通过转化为文件粒度，加上VirtualAddress可以定位到导入库的名字。需要强转为char*</p>
 <p>OriginalFirstThunk INT库的地址，RVA 每次都要判断所指向的任意内容是否为空，如ul.AddressOfData。转化为offset，加上VirtualAddress，定位到新的结构体，函数名字导入。指向的结构为IMAGE_THUNK_DATA有64位和32位之分，且是一个联合体ul，64位8字节32位4字节。需要强转为DWORD。如果判断为不是名字，则是索引导入。直接用这个值转化为IMAGE_ORDINAL。文件状态下的文件粒度对齐</p>
-<p><img src="/.com//image-20221204232839654.png" alt="image-20221204232839654"></p>
+<p><img src="/.io//image-20221204232839654.png" alt="image-20221204232839654"></p>
 <p>FirstThunk IAT的地址，RVA 每次都要判断所指向的任意内容是否为空。进入运行状态时其中内容已经更新为地址。运行状态下内存粒度对齐。通过修改FirstThunk中的内容，可以进行IAT注入。</p>
-<p><img src="/.com//image-20221002202630963.png" alt="image-20221002202630963"></p>
-<p><img src="/.com//image-20230119000531876.png" alt="image-20230119000531876"></p>
-<p><img src="/.com//image-20230119001557338.png" alt="image-20230119001557338"></p>
-<p><img src="/.com//image-20221002202822313.png" alt="image-20221002202822313"></p>
+<p><img src="/.io//image-20221002202630963.png" alt="image-20221002202630963"></p>
+<p><img src="/.io//image-20230119000531876.png" alt="image-20230119000531876"></p>
+<p><img src="/.io//image-20230119001557338.png" alt="image-20230119001557338"></p>
+<p><img src="/.io//image-20221002202822313.png" alt="image-20221002202822313"></p>
 <p>INT与IAT是联合体，32位下是四个字节，64位下是8个字节。</p>
 <p>导出表</p>
 <p>存在dll中，只有一个</p>
 <p>导出表目录 PIMAGE_EXPORT_DIRECTORY 像导入表目录一样定位</p>
-<p><img src="/.com//image-20221214212322335.png" alt="image-20221214212322335"></p>
+<p><img src="/.io//image-20221214212322335.png" alt="image-20221214212322335"></p>
 <p>有索引、函数名导出两种方式</p>
-<p><img src="/.com//image-20221214214327363.png" alt="image-20221214214327363"></p>
+<p><img src="/.io//image-20221214214327363.png" alt="image-20221214214327363"></p>
 <p>重定向表 relocation</p>
 <p>exe文件加载时，image base默认地址为0x400000，此时代码地址都不需要变化。但如果image base地址不是默认值，就需要重新修复，这就需要把默认情况下地址都存放在重定向表中。</p>
 <p>进行修复时，使用真实值-0x400000，加上默认情况下的值</p>
 <p>主要针对绝对寻址的，如全局变量、静态变量、自己定义的函数</p>
-<p><img src="/.com//image-20221231224618748.png" alt="image-20221231224618748"></p>
+<p><img src="/.io//image-20221231224618748.png" alt="image-20221231224618748"></p>
 <p>重定向表不止一张。virtualaddress需要进行rva to offset转换</p>
-<p><img src="/.com//image-20221231225852866.png" alt="image-20221231225852866"></p>
-<p><img src="/.com//image-20231213205734326.png" alt="image-20231213205734326"></p>
+<p><img src="/.io//image-20221231225852866.png" alt="image-20221231225852866"></p>
+<p><img src="/.io//image-20231213205734326.png" alt="image-20231213205734326"></p>
 <p>获取目标进程的dll模块的方法</p>
 <ol>
 <li>CreatetoolHelp32Snapshot</li>
@@ -275,4 +275,4 @@
 
 
 
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">qianmu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2024/02/04/PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/">http://example.com/2024/02/04/PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/02/04/Hook%E8%AE%A1%E7%AE%97%E5%99%A8%E4%BB%A5%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%95%B0%E5%AD%97/" title="Hook计算器以显示中文数字"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Hook计算器以显示中文数字</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/04/%E5%9B%9B%E7%A7%8D%E8%8E%B7%E5%8F%96%E7%9B%AE%E6%A0%87%E8%BF%9B%E7%A8%8B%E5%AF%BC%E5%85%A5DLL%E6%A8%A1%E5%9D%97%E5%9C%B0%E5%9D%80%E7%9A%84%E6%96%B9%E6%B3%95/" title="四种获取目标进程导入DLL模块地址的方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">四种获取目标进程导入DLL模块地址的方法</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PE"><span class="toc-number">1.</span> <span class="toc-text">PE</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8ASLR%E6%9C%BA%E5%88%B6%E4%B8%8BDLL%E6%96%87%E4%BB%B6%E5%9C%A8%E4%B8%8D%E5%90%8C%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%9F%BA%E5%9D%80%E7%9B%B8%E5%90%8C%EF%BC%9F/" title="为什么在ASLR机制下DLL文件在不同进程中的加载基址相同？">为什么在ASLR机制下DLL文件在不同进程中的加载基址相同？</a><time datetime="2024-02-04T13:17:35.000Z" title="Created 2024-02-04 21:17:35">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" title="线程池">线程池</a><time datetime="2024-02-04T13:08:39.000Z" title="Created 2024-02-04 21:08:39">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/VT-x/" title="VT-x">VT-x</a><time datetime="2024-02-04T13:02:40.000Z" title="Created 2024-02-04 21:02:40">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/TLS/" title="TLS">TLS</a><time datetime="2024-02-04T13:01:16.000Z" title="Created 2024-02-04 21:01:16">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/Hook%E8%AE%A1%E7%AE%97%E5%99%A8%E4%BB%A5%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%95%B0%E5%AD%97/" title="Hook计算器以显示中文数字">Hook计算器以显示中文数字</a><time datetime="2024-02-04T12:55:21.000Z" title="Created 2024-02-04 20:55:21">2024-02-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async src="https://npm.elemecdn.com/tzy-blog/lib/js/other/sakura.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":225,"height":450},"mobile":{"show":true},"log":false});</script></body></html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io">qianmu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io/2024/02/04/PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/">https://qianmuoy.github.io/2024/02/04/PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/02/04/Hook%E8%AE%A1%E7%AE%97%E5%99%A8%E4%BB%A5%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%95%B0%E5%AD%97/" title="Hook计算器以显示中文数字"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Hook计算器以显示中文数字</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/04/%E5%9B%9B%E7%A7%8D%E8%8E%B7%E5%8F%96%E7%9B%AE%E6%A0%87%E8%BF%9B%E7%A8%8B%E5%AF%BC%E5%85%A5DLL%E6%A8%A1%E5%9D%97%E5%9C%B0%E5%9D%80%E7%9A%84%E6%96%B9%E6%B3%95/" title="四种获取目标进程导入DLL模块地址的方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">四种获取目标进程导入DLL模块地址的方法</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PE"><span class="toc-number">1.</span> <span class="toc-text">PE</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8ASLR%E6%9C%BA%E5%88%B6%E4%B8%8BDLL%E6%96%87%E4%BB%B6%E5%9C%A8%E4%B8%8D%E5%90%8C%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%9F%BA%E5%9D%80%E7%9B%B8%E5%90%8C%EF%BC%9F/" title="为什么在ASLR机制下DLL文件在不同进程中的加载基址相同？">为什么在ASLR机制下DLL文件在不同进程中的加载基址相同？</a><time datetime="2024-02-04T13:17:35.000Z" title="Created 2024-02-04 21:17:35">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" title="线程池">线程池</a><time datetime="2024-02-04T13:08:39.000Z" title="Created 2024-02-04 21:08:39">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/VT-x/" title="VT-x">VT-x</a><time datetime="2024-02-04T13:02:40.000Z" title="Created 2024-02-04 21:02:40">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/TLS/" title="TLS">TLS</a><time datetime="2024-02-04T13:01:16.000Z" title="Created 2024-02-04 21:01:16">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/Hook%E8%AE%A1%E7%AE%97%E5%99%A8%E4%BB%A5%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%95%B0%E5%AD%97/" title="Hook计算器以显示中文数字">Hook计算器以显示中文数字</a><time datetime="2024-02-04T12:55:21.000Z" title="Created 2024-02-04 20:55:21">2024-02-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async src="https://www.liuzehe.top/upload/bkjs/yinghua.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":100,"height":220},"mobile":{"show":"flase"},"log":false});</script></body></html>

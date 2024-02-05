@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>MySQL | qianmu's blog</title><meta name="author" content="qianmu"><meta name="copyright" content="qianmu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="安装  到官网进行安装。点击MySQL Installer for Windows下载安装包后一直next即可。  启动与停止  mysql开机默认启动。 在win+R运行services.msc，找到mysql右键操作。 在cmd中运行net start mysql80、net stop mysql80进行启动与停止。  客户端连接  方式一：直接使用mysql提供的命令行进行连接。开始找到M">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL">
-<meta property="og:url" content="http://example.com/2023/03/27/MySQL/index.html">
+<meta property="og:url" content="https://qianmuoy.github.io/2023/03/27/MySQL/index.html">
 <meta property="og:site_name" content="qianmu&#39;s blog">
 <meta property="og:description" content="安装  到官网进行安装。点击MySQL Installer for Windows下载安装包后一直next即可。  启动与停止  mysql开机默认启动。 在win+R运行services.msc，找到mysql右键操作。 在cmd中运行net start mysql80、net stop mysql80进行启动与停止。  客户端连接  方式一：直接使用mysql提供的命令行进行连接。开始找到M">
 <meta property="og:locale" content="en_US">
@@ -10,7 +10,7 @@
 <meta property="article:modified_time" content="2024-02-04T12:35:37.902Z">
 <meta property="article:author" content="qianmu">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/03/27/MySQL/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://qianmuoy.github.io/2023/03/27/MySQL/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
@@ -184,9 +184,9 @@
 <li><h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2></li>
 </ol>
 <p>  （1） SQL通用语法</p>
-<p>  <img src="/.com//image-20220608212631284.png" alt="image-20220608212631284"></p>
+<p>  <img src="/.io//image-20220608212631284.png" alt="image-20220608212631284"></p>
 <p>  （2） SQL分类</p>
-<p>  <img src="/.com//image-20220608231123489.png" alt="image-20220608231123489"></p>
+<p>  <img src="/.io//image-20220608231123489.png" alt="image-20220608231123489"></p>
 <p>  （3） DDL</p>
 <p>  ​	查询数据库</p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line"><span class="keyword">select</span> database();# 查询当前数据库</span><br></pre></td></tr></table></figure>
@@ -208,15 +208,15 @@
 <li>数据类型quality</li>
 </ul>
 <p>  ​	1）数值类型</p>
-<p>  <img src="/.com//image-20220609124851766.png" alt="image-20220609124851766"></p>
+<p>  <img src="/.io//image-20220609124851766.png" alt="image-20220609124851766"></p>
 <p>  ​	定义float和double类型时，需要两个参数。如score double(4, 1)代表4个长度，最多1位小数。</p>
 <p>  ​	定义无符号时应该是 age TINYINT UNSIGNED;,unsigned放在数据类型后面。</p>
 <p>  ​	2） 字符串类型</p>
-<p>  <img src="/.com//image-20220609125257798.png" alt="image-20220609125257798"></p>
+<p>  <img src="/.io//image-20220609125257798.png" alt="image-20220609125257798"></p>
 <p>  ​	sql中字符串为varchar(size)，size是字符串的长度。一旦超出size会报错。varchar会动态占用内存，而char不管多大都必定占用size内存。但是char性能更高。</p>
 <p>  ​	例如用户名适合用varchar，性别适合用char。</p>
 <p>  ​	3） 日期类型</p>
-<p>  <img src="/.com//image-20220609125639480.png" alt="image-20220609125639480"></p>
+<p>  <img src="/.io//image-20220609125639480.png" alt="image-20220609125639480"></p>
 <p>  birthday date;</p>
 <p>  注意最后一个字段没有逗号。 </p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tableName(</span><br><span class="line">	字段<span class="number">1</span> 字段<span class="number">1</span>类型 COMMENT “字段<span class="number">1</span>注释”,</span><br><span class="line">    ...</span><br><span class="line">    字段n 字段n类型 COMMENT “字段n注释”</span><br><span class="line">)COMMENT “表注释”；</span><br></pre></td></tr></table></figure>
@@ -233,26 +233,26 @@
 <ul>
 <li>案例</li>
 </ul>
-<p>  <img src="/.com//image-20220609130454987.png" alt="image-20220609130454987"></p>
+<p>  <img src="/.io//image-20220609130454987.png" alt="image-20220609130454987"></p>
 <p>  ​	表修改</p>
 <p>  1）添加字段</p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName <span class="keyword">ADD</span> fieldName quality COMMENT “注释” 约束;</span><br></pre></td></tr></table></figure>
 
-<p>  <img src="/.com//image-20220612192330899.png" alt="image-20220612192330899"></p>
+<p>  <img src="/.io//image-20220612192330899.png" alt="image-20220612192330899"></p>
 <p>​	2） 修改数据类型</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName MDOIFY fieldName newQuality(size);</span><br></pre></td></tr></table></figure>
 
 <p>​	3） 修改字段名和字段类型</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName CHANGE oldTableName newTableName quality(size) COMMENT &quot;注释&quot; 约束;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.com//image-20220613164607169.png" alt="image-20220613164607169"></p>
+<p><img src="/.io//image-20220613164607169.png" alt="image-20220613164607169"></p>
 <p>​	4)	删除字段</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName <span class="keyword">DROP</span> filedName;</span><br></pre></td></tr></table></figure>
 
 <p>​	5)	修改表名</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName RENAME <span class="keyword">TO</span> newTableName;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.com//image-20220613164847531.png" alt="image-20220613164847531"></p>
+<p><img src="/.io//image-20220613164847531.png" alt="image-20220613164847531"></p>
 <p>​	6)	删除表</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> tableName;</span><br></pre></td></tr></table></figure>
 
@@ -273,89 +273,89 @@
 <p>​	4）使用sql语句操作 </p>
 <p>右键 new quary console</p>
 <p>​	（4）DML 增删改操作</p>
-<p><img src="/.com//image-20220618161047205.png" alt="image-20220618161047205"></p>
-<p><img src="/.com//image-20220618161121394.png" alt="image-20220618161121394"></p>
-<p><img src="/.com//image-20220618161328719.png" alt="image-20220618161328719"></p>
+<p><img src="/.io//image-20220618161047205.png" alt="image-20220618161047205"></p>
+<p><img src="/.io//image-20220618161121394.png" alt="image-20220618161121394"></p>
+<p><img src="/.io//image-20220618161328719.png" alt="image-20220618161328719"></p>
 <p>如果没有where条件，会修改所有数据。</p>
-<p><img src="/.com//image-20220618161853602.png" alt="image-20220618161853602"></p>
+<p><img src="/.io//image-20220618161853602.png" alt="image-20220618161853602"></p>
 <p>（5）DQL 查操作 关键字：SELECT</p>
 <p> 1）基础查询</p>
-<p><img src="/.com//image-20220618162123361.png" alt="image-20220618162123361"></p>
+<p><img src="/.io//image-20220618162123361.png" alt="image-20220618162123361"></p>
 <p>查询可以起别名。SELECT … as ‘ ,,, ‘ from …;其中as可以省略。</p>
 <p>查询如果不要重复，可以在select后加distinct关键字。</p>
-<p><img src="/.com//image-20220618163140955.png" alt="image-20220618163140955"></p>
-<p><img src="/.com//image-20220618163247041.png" alt="image-20220618163247041"></p>
-<p><img src="/.com//image-20220618163307080.png" alt="image-20220618163307080"></p>
+<p><img src="/.io//image-20220618163140955.png" alt="image-20220618163140955"></p>
+<p><img src="/.io//image-20220618163247041.png" alt="image-20220618163247041"></p>
+<p><img src="/.io//image-20220618163307080.png" alt="image-20220618163307080"></p>
 <ul>
 <li>聚合函数</li>
 </ul>
-<p><img src="/.com//image-20220618163412171.png" alt="image-20220618163412171"></p>
+<p><img src="/.io//image-20220618163412171.png" alt="image-20220618163412171"></p>
 <p>count不会统计null，最好采用count(*)</p>
 <p>2） 分组查询</p>
-<p><img src="/.com//image-20220618163708910.png" alt="image-20220618163708910"></p>
-<p><img src="/.com//image-20220618163846266.png" alt="image-20220618163846266"></p>
-<p><img src="/.com//image-20220618163948066.png" alt="image-20220618163948066"></p>
+<p><img src="/.io//image-20220618163708910.png" alt="image-20220618163708910"></p>
+<p><img src="/.io//image-20220618163846266.png" alt="image-20220618163846266"></p>
+<p><img src="/.io//image-20220618163948066.png" alt="image-20220618163948066"></p>
 <p>3） 排序查询</p>
-<p><img src="/.com//image-20220618164045538.png" alt="image-20220618164045538"></p>
+<p><img src="/.io//image-20220618164045538.png" alt="image-20220618164045538"></p>
 <p>如果是多字段排序，字段一 一样时才会用第二种排序</p>
 <p>4） 分页查询</p>
-<p><img src="/.com//image-20220618164338732.png" alt="image-20220618164338732"></p>
+<p><img src="/.io//image-20220618164338732.png" alt="image-20220618164338732"></p>
 <ul>
 <li>编写顺序与执行顺序</li>
 </ul>
-<p><img src="/.com//image-20220618164904815.png" alt="image-20220618164904815"></p>
+<p><img src="/.io//image-20220618164904815.png" alt="image-20220618164904815"></p>
 <p>（6）DCL 管理数据库用户、控制数据库访问权限</p>
 <p>1） 用户</p>
-<p><img src="/.com//image-20220618165210119.png" alt="image-20220618165210119"></p>
-<p><img src="/.com//image-20220618165444310.png" alt="image-20220618165444310"></p>
+<p><img src="/.io//image-20220618165210119.png" alt="image-20220618165210119"></p>
+<p><img src="/.io//image-20220618165444310.png" alt="image-20220618165444310"></p>
 <p>2） 权限</p>
-<p><img src="/.com//image-20220618165522969.png" alt="image-20220618165522969"></p>
-<p><img src="/.com//image-20220618165546535.png" alt="image-20220618165546535"></p>
+<p><img src="/.io//image-20220618165522969.png" alt="image-20220618165522969"></p>
+<p><img src="/.io//image-20220618165546535.png" alt="image-20220618165546535"></p>
 <p>主机名可以用’%’通配，表名用’*’通配。</p>
 <ol start="7">
 <li>函数 mysql内置了函数。select 函数名();</li>
 </ol>
 <p>（1）字符串函数</p>
-<p><img src="/.com//image-20220618165858267.png" alt="image-20220618165858267"></p>
+<p><img src="/.io//image-20220618165858267.png" alt="image-20220618165858267"></p>
 <p>（2）数值函数</p>
-<p><img src="/.com//image-20220618170006506.png" alt="image-20220618170006506"></p>
+<p><img src="/.io//image-20220618170006506.png" alt="image-20220618170006506"></p>
 <p>（3）日期函数</p>
-<p><img src="/.com//image-20220618170109965.png" alt="image-20220618170109965"></p>
+<p><img src="/.io//image-20220618170109965.png" alt="image-20220618170109965"></p>
 <p>type填写YEAR、MONTH、DAY</p>
 <p>（4）流程函数</p>
-<p><img src="/.com//image-20220618170305620.png" alt="image-20220618170305620"></p>
-<p><img src="/.com//image-20220618170413188.png" alt="image-20220618170413188"></p>
+<p><img src="/.io//image-20220618170305620.png" alt="image-20220618170305620"></p>
+<p><img src="/.io//image-20220618170413188.png" alt="image-20220618170413188"></p>
 <ol start="8">
 <li>约束 保证数据的正确性和完整性</li>
 </ol>
-<p><img src="/.com//image-20220618170648105.png" alt="image-20220618170648105"></p>
-<p><img src="/.com//image-20220618170843417.png" alt="image-20220618170843417"></p>
-<p><img src="/.com//image-20220618171037126.png" alt="image-20220618171037126"></p>
+<p><img src="/.io//image-20220618170648105.png" alt="image-20220618170648105"></p>
+<p><img src="/.io//image-20220618170843417.png" alt="image-20220618170843417"></p>
+<p><img src="/.io//image-20220618171037126.png" alt="image-20220618171037126"></p>
 <p>尽管没有插入成功，数据也会向mysql申请主键。</p>
 <p>在可视化创建数据的时候可以直接勾选。</p>
 <ul>
 <li>外键关联 表之间的联系</li>
 </ul>
-<p><img src="/.com//image-20220618171436873.png" alt="image-20220618171436873"></p>
-<p><img src="/.com//image-20220618171631373.png" alt="image-20220618171631373"></p>
-<p><img src="/.com//image-20220618171705691.png" alt="image-20220618171705691"></p>
-<p><img src="/.com//image-20220618171815398.png" alt="image-20220618171815398"></p>
+<p><img src="/.io//image-20220618171436873.png" alt="image-20220618171436873"></p>
+<p><img src="/.io//image-20220618171631373.png" alt="image-20220618171631373"></p>
+<p><img src="/.io//image-20220618171705691.png" alt="image-20220618171705691"></p>
+<p><img src="/.io//image-20220618171815398.png" alt="image-20220618171815398"></p>
 <ol start="9">
 <li><p>事务 要么全部成功，要么全部失败</p>
 <p> 方式一</p>
 </li>
 </ol>
-<p><img src="/.com//image-20220618172507776.png" alt="image-20220618172507776"></p>
+<p><img src="/.io//image-20220618172507776.png" alt="image-20220618172507776"></p>
 <p>​		方式二</p>
-<p><img src="/.com//image-20220618172801474.png" alt="image-20220618172801474"></p>
+<p><img src="/.io//image-20220618172801474.png" alt="image-20220618172801474"></p>
 <ul>
 <li>事务的四大特性</li>
 </ul>
-<p><img src="/.com//image-20220618172956835.png" alt="image-20220618172956835"></p>
+<p><img src="/.io//image-20220618172956835.png" alt="image-20220618172956835"></p>
 <ul>
 <li>并发事务问题</li>
 </ul>
-<p><img src="/.com//image-20220618173159379.png" alt="image-20220618173159379"></p>
+<p><img src="/.io//image-20220618173159379.png" alt="image-20220618173159379"></p>
 <p>解决方法：事务的隔离级别</p>
-<p><img src="/.com//image-20220618173605287.png" alt="image-20220618173605287"></p>
-<h2 id="python-3中运行pip-install-Mysqlclient-通过import-MySQLdb来建立数据库的连接。"><a href="#python-3中运行pip-install-Mysqlclient-通过import-MySQLdb来建立数据库的连接。" class="headerlink" title="python 3中运行pip install Mysqlclient, 通过import MySQLdb来建立数据库的连接。"></a>python 3中运行pip install Mysqlclient, 通过import MySQLdb来建立数据库的连接。</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">qianmu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2023/03/27/MySQL/">http://example.com/2023/03/27/MySQL/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/27/git/" title="git"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">git</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="面向对象"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">面向对象</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2"><span class="toc-number">2.</span> <span class="toc-text">启动与停止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">客户端连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">4.</span> <span class="toc-text">MySQL数据库的好处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL"><span class="toc-number">5.</span> <span class="toc-text">SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python-3%E4%B8%AD%E8%BF%90%E8%A1%8Cpip-install-Mysqlclient-%E9%80%9A%E8%BF%87import-MySQLdb%E6%9D%A5%E5%BB%BA%E7%AB%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%BF%9E%E6%8E%A5%E3%80%82"><span class="toc-number">6.</span> <span class="toc-text">python 3中运行pip install Mysqlclient, 通过import MySQLdb来建立数据库的连接。</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8ASLR%E6%9C%BA%E5%88%B6%E4%B8%8BDLL%E6%96%87%E4%BB%B6%E5%9C%A8%E4%B8%8D%E5%90%8C%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%9F%BA%E5%9D%80%E7%9B%B8%E5%90%8C%EF%BC%9F/" title="为什么在ASLR机制下DLL文件在不同进程中的加载基址相同？">为什么在ASLR机制下DLL文件在不同进程中的加载基址相同？</a><time datetime="2024-02-04T13:17:35.000Z" title="Created 2024-02-04 21:17:35">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" title="线程池">线程池</a><time datetime="2024-02-04T13:08:39.000Z" title="Created 2024-02-04 21:08:39">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/VT-x/" title="VT-x">VT-x</a><time datetime="2024-02-04T13:02:40.000Z" title="Created 2024-02-04 21:02:40">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/TLS/" title="TLS">TLS</a><time datetime="2024-02-04T13:01:16.000Z" title="Created 2024-02-04 21:01:16">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/Hook%E8%AE%A1%E7%AE%97%E5%99%A8%E4%BB%A5%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%95%B0%E5%AD%97/" title="Hook计算器以显示中文数字">Hook计算器以显示中文数字</a><time datetime="2024-02-04T12:55:21.000Z" title="Created 2024-02-04 20:55:21">2024-02-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async src="https://npm.elemecdn.com/tzy-blog/lib/js/other/sakura.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":225,"height":450},"mobile":{"show":true},"log":false});</script></body></html>
+<p><img src="/.io//image-20220618173605287.png" alt="image-20220618173605287"></p>
+<h2 id="python-3中运行pip-install-Mysqlclient-通过import-MySQLdb来建立数据库的连接。"><a href="#python-3中运行pip-install-Mysqlclient-通过import-MySQLdb来建立数据库的连接。" class="headerlink" title="python 3中运行pip install Mysqlclient, 通过import MySQLdb来建立数据库的连接。"></a>python 3中运行pip install Mysqlclient, 通过import MySQLdb来建立数据库的连接。</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io">qianmu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io/2023/03/27/MySQL/">https://qianmuoy.github.io/2023/03/27/MySQL/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/27/git/" title="git"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">git</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/22/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="面向对象"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">面向对象</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2"><span class="toc-number">2.</span> <span class="toc-text">启动与停止</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">客户端连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">4.</span> <span class="toc-text">MySQL数据库的好处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL"><span class="toc-number">5.</span> <span class="toc-text">SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python-3%E4%B8%AD%E8%BF%90%E8%A1%8Cpip-install-Mysqlclient-%E9%80%9A%E8%BF%87import-MySQLdb%E6%9D%A5%E5%BB%BA%E7%AB%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%BF%9E%E6%8E%A5%E3%80%82"><span class="toc-number">6.</span> <span class="toc-text">python 3中运行pip install Mysqlclient, 通过import MySQLdb来建立数据库的连接。</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8ASLR%E6%9C%BA%E5%88%B6%E4%B8%8BDLL%E6%96%87%E4%BB%B6%E5%9C%A8%E4%B8%8D%E5%90%8C%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%9F%BA%E5%9D%80%E7%9B%B8%E5%90%8C%EF%BC%9F/" title="为什么在ASLR机制下DLL文件在不同进程中的加载基址相同？">为什么在ASLR机制下DLL文件在不同进程中的加载基址相同？</a><time datetime="2024-02-04T13:17:35.000Z" title="Created 2024-02-04 21:17:35">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" title="线程池">线程池</a><time datetime="2024-02-04T13:08:39.000Z" title="Created 2024-02-04 21:08:39">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/VT-x/" title="VT-x">VT-x</a><time datetime="2024-02-04T13:02:40.000Z" title="Created 2024-02-04 21:02:40">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/TLS/" title="TLS">TLS</a><time datetime="2024-02-04T13:01:16.000Z" title="Created 2024-02-04 21:01:16">2024-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/04/Hook%E8%AE%A1%E7%AE%97%E5%99%A8%E4%BB%A5%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87%E6%95%B0%E5%AD%97/" title="Hook计算器以显示中文数字">Hook计算器以显示中文数字</a><time datetime="2024-02-04T12:55:21.000Z" title="Created 2024-02-04 20:55:21">2024-02-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async src="https://www.liuzehe.top/upload/bkjs/yinghua.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":100,"height":220},"mobile":{"show":"flase"},"log":false});</script></body></html>
