@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>arm和thumb | qianmu's blog</title><meta name="author" content="qianmu"><meta name="copyright" content="qianmu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="arm和thumb为什么逆向的时候计算thumb地址是so 基址 + 函数在 so 中的偏移 + 1？ 【ARM】Thumb2指令集中函数的地址不对齐？_thumb 地址-CSDN博客 ARM指令集： 编代码全部是 32bits 的，每条指令能承载更多的信息，因此使用最少的指令完成功能， 所以在相同频率下运行速度也是最快的， 但也因为每条指令是32bits 的而占用了最多的程序空间。 Thumb指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="arm和thumb">
+<meta property="og:url" content="https://qianmuoy.github.io/2024/03/18/arm%E5%92%8Cthumb/index.html">
+<meta property="og:site_name" content="qianmu&#39;s blog">
+<meta property="og:description" content="arm和thumb为什么逆向的时候计算thumb地址是so 基址 + 函数在 so 中的偏移 + 1？ 【ARM】Thumb2指令集中函数的地址不对齐？_thumb 地址-CSDN博客 ARM指令集： 编代码全部是 32bits 的，每条指令能承载更多的信息，因此使用最少的指令完成功能， 所以在相同频率下运行速度也是最快的， 但也因为每条指令是32bits 的而占用了最多的程序空间。 Thumb指">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-18T14:20:58.000Z">
+<meta property="article:modified_time" content="2024-03-18T14:21:32.779Z">
+<meta property="article:author" content="qianmu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://qianmuoy.github.io/2024/03/18/arm%E5%92%8Cthumb/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'arm和thumb',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-18 22:21:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="qianmu's blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="qianmu's blog"><span class="site-name">qianmu's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">arm和thumb</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-03-18T14:20:58.000Z" title="Created 2024-03-18 22:20:58">2024-03-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-03-18T14:21:32.779Z" title="Updated 2024-03-18 22:21:32">2024-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Android/">Android</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="arm和thumb"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="arm和thumb"><a href="#arm和thumb" class="headerlink" title="arm和thumb"></a>arm和thumb</h1><p><strong>为什么逆向的时候计算thumb地址是so 基址 + 函数在 so 中的偏移 + 1？</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/tq384998430/article/details/119715531">【ARM】Thumb2指令集中函数的地址不对齐？_thumb 地址-CSDN博客</a></p>
+<p>ARM指令集：</p>
+<p>编代码全部是 32bits 的，每条指令能承载更多的信息，因此使用最少的指令完成功能， 所以在相同频率下运行速度也是最快的， 但也因为每条指令是32bits 的而占用了最多的程序空间。</p>
+<p>Thumb指令集：</p>
+<p>编代码全部是 16bits 的，每条指令所能承载的信息少，因此它需要使用更多的指令才能完成功能， 因此运行速度慢， 但它也占用了最少的程序空间</p>
+<p>Thumb-2指令集：</p>
+<p>在前面两者之间取了一个平衡， 兼有二者的优势， 当一个 操作可以使用一条 32bits指令完成时就使用 32bits 的指令， 加快运行速度， 而当一次操作只需要一条16bits 指令完成时就使用16bits 的指令，节约存储空间。</p>
+<p>实验程序：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">test</span><span class="params">(<span class="type">void</span> (*p)(USART_TypeDef*,u8))</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">Initialization</span>();</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%.8X\r\n&quot;</span>, (<span class="type">unsigned</span> <span class="type">int</span>)main);</span><br><span class="line"> </span><br><span class="line">	<span class="type">unsigned</span> <span class="type">int</span> a = (<span class="type">unsigned</span> <span class="type">int</span>)test;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%.8X\r\n&quot;</span>, a);</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ARM指令是4字节对齐的，Thumb-2指令是2字节对齐的，所以这里函数test的地址应该是2字节对齐的，但是打印出来的值却是：080014A9和080014FD。main函数的地址和test函数的地址都成了奇数地址了。</p>
+<p>这个问题在于有些ARM处理器即能使用ARM指令，又能兼容Thumb指令，同一个应用程序中可能同时存在ARM指令和Thumb指令，这两者的处理方式肯定是大不相同的，所以为了切换ARM状态和Thumb状态，在跳转到Thumb指令编写的代码块的时候，将程序地址的最低位置1（因为不管是ARM指令还是Thumb指令，<strong>都至少是2字节对齐的，所以最低位一定是0，所以最低位可以拿来用于区分ARM状态和Thumb状态</strong>），这样处理器识别到最低位为1的话就会切换到Thumb状态，否则则是ARM状态。Thumb2指令集也是为了兼容以前的ARM状态和Thumb状态这样做的。</p>
+<p>所以编译器编译STM32F1的程序的时候，会把函数的真实地址 <strong>加上1</strong> 作为常量放在ROM空间（如果这个函数的地址有被用到的话），获取函数的指针的时候就会获取到最低位被置1的一个地址。如下图，获取test的地址的时候，到0x080014F0地址处读取到了0x080014FD的值，这其实就是test的真实地址0x080014FC + 1得到的。</p>
+<p>同样使用BX指令跳转时，+1就可以在.code16下继续执行。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io">qianmu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io/2024/03/18/arm%E5%92%8Cthumb/">https://qianmuoy.github.io/2024/03/18/arm%E5%92%8Cthumb/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/18/%E4%BD%BF%E7%94%A8WindowsAPI%E5%9C%A8Ring3%E8%BF%9B%E8%A1%8C%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/" title="使用WindowsAPI在Ring3进行系统操作"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">使用WindowsAPI在Ring3进行系统操作</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/09/%E8%8E%B7%E5%8F%96Ntdll%E5%87%BD%E6%95%B0%E4%B8%8ENtOS%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF/" title="获取Ntdll函数与NtOS服务信息"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">获取Ntdll函数与NtOS服务信息</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#arm%E5%92%8Cthumb"><span class="toc-number">1.</span> <span class="toc-text">arm和thumb</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/18/Frida/" title="Frida">Frida</a><time datetime="2024-03-18T14:24:28.000Z" title="Created 2024-03-18 22:24:28">2024-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/18/%E4%BD%BF%E7%94%A8WindowsAPI%E5%9C%A8Ring3%E8%BF%9B%E8%A1%8C%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/" title="使用WindowsAPI在Ring3进行系统操作">使用WindowsAPI在Ring3进行系统操作</a><time datetime="2024-03-18T14:23:36.000Z" title="Created 2024-03-18 22:23:36">2024-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/18/arm%E5%92%8Cthumb/" title="arm和thumb">arm和thumb</a><time datetime="2024-03-18T14:20:58.000Z" title="Created 2024-03-18 22:20:58">2024-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/%E8%8E%B7%E5%8F%96Ntdll%E5%87%BD%E6%95%B0%E4%B8%8ENtOS%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF/" title="获取Ntdll函数与NtOS服务信息">获取Ntdll函数与NtOS服务信息</a><time datetime="2024-03-09T13:09:29.000Z" title="Created 2024-03-09 21:09:29">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/APC%E6%B3%A8%E5%85%A5/" title="APC注入">APC注入</a><time datetime="2024-03-09T12:40:40.000Z" title="Created 2024-03-09 20:40:40">2024-03-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async src="https://www.liuzehe.top/upload/bkjs/yinghua.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":120,"height":260},"mobile":{"show":"flase"},"log":false});</script></body></html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>使用WindowsAPI在Ring3进行系统操作 | qianmu's blog</title><meta name="author" content="qianmu"><meta name="copyright" content="qianmu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="使用Windows API在Ring3对系统进行操作Cmd使用管道通信 客户端 LoadLibrary(“Cmd.dll”); GetProcAddress 获取下述各种函数地址 SetPipeCommunication开启管道通信 启动cmd.exe，SetPipeData发送服务端的数据 启动线程，GetPipeData获取管道内的数据（cmd返回的），向服务端发送 析构时UnsetPipeC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用WindowsAPI在Ring3进行系统操作">
+<meta property="og:url" content="https://qianmuoy.github.io/2024/03/18/%E4%BD%BF%E7%94%A8WindowsAPI%E5%9C%A8Ring3%E8%BF%9B%E8%A1%8C%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="qianmu&#39;s blog">
+<meta property="og:description" content="使用Windows API在Ring3对系统进行操作Cmd使用管道通信 客户端 LoadLibrary(“Cmd.dll”); GetProcAddress 获取下述各种函数地址 SetPipeCommunication开启管道通信 启动cmd.exe，SetPipeData发送服务端的数据 启动线程，GetPipeData获取管道内的数据（cmd返回的），向服务端发送 析构时UnsetPipeC">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-03-18T14:23:36.000Z">
+<meta property="article:modified_time" content="2024-03-18T14:23:57.559Z">
+<meta property="article:author" content="qianmu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://qianmuoy.github.io/2024/03/18/%E4%BD%BF%E7%94%A8WindowsAPI%E5%9C%A8Ring3%E8%BF%9B%E8%A1%8C%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '使用WindowsAPI在Ring3进行系统操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-18 22:23:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="qianmu's blog" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="qianmu's blog"><span class="site-name">qianmu's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">使用WindowsAPI在Ring3进行系统操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-03-18T14:23:36.000Z" title="Created 2024-03-18 22:23:36">2024-03-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-03-18T14:23:57.559Z" title="Updated 2024-03-18 22:23:57">2024-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Windows-Programming/">Windows Programming</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="使用WindowsAPI在Ring3进行系统操作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="使用Windows-API在Ring3对系统进行操作"><a href="#使用Windows-API在Ring3对系统进行操作" class="headerlink" title="使用Windows API在Ring3对系统进行操作"></a>使用Windows API在Ring3对系统进行操作</h1><h1 id="Cmd"><a href="#Cmd" class="headerlink" title="Cmd"></a>Cmd</h1><p>使用管道通信</p>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><ol>
+<li>LoadLibrary(“Cmd.dll”);</li>
+<li>GetProcAddress 获取下述各种函数地址</li>
+<li>SetPipeCommunication开启管道通信</li>
+<li>启动cmd.exe，SetPipeData发送服务端的数据</li>
+<li>启动线程，GetPipeData获取管道内的数据（cmd返回的），向服务端发送</li>
+<li>析构时UnsetPipeCommunication释放管道</li>
+</ol>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><p>接受到客户端返回的东西然后展示</p>
+<p>用户输入要在客户端cmd运行的东西，发送出去（IOCP）</p>
+<h1 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h1><h2 id="客户端-1"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h2><ol>
+<li>capGetDriverDescription获取打印机、摄像头等外部设备信息</li>
+<li>RegOpenKey打开注册表键句柄，RegQueryValueEx传入句柄和要查的键string获取值</li>
+<li>上述方法查到进程信息，在HARDWARE\DESCRIPTION\System\CentralProcessor\0，ProcessorNameString</li>
+<li>发送到服务端</li>
+</ol>
+<h2 id="服务端-1"><a href="#服务端-1" class="headerlink" title="服务端"></a>服务端</h2><p>拿到信息设置进数据结构里面</p>
+<h1 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h1><h2 id="客户端-2"><a href="#客户端-2" class="headerlink" title="客户端"></a>客户端</h2><ol>
+<li>LoadLibrary(“Service.dll”);</li>
+<li>SeEnumServiceList枚举服务信息，自己遍历一下放进BufferData，发送到服务端</li>
+<li>接受服务端发过来的Method，ServiceName，调用SeCofigService设置服务信息。重复步骤2.</li>
+</ol>
+<h2 id="服务端-2"><a href="#服务端-2" class="headerlink" title="服务端"></a>服务端</h2><ol>
+<li><p>LoadLibrary(“Service.dll”)；获取SeEnumServiceList地址</p>
+</li>
+<li><p>解析客户端发过来的Buffer，展示信息。调用SeEnumServiceList展示本机的服务信息</p>
+</li>
+<li><p>客户端信息有：<br> “服务名称”,<br> “显示名称”,<br> “启动类型”,<br> “运行状态”,<br> “可执行文件路径”<br> “服务名称”,<br> “显示名称”,<br> “启动类型”,<br> “运行状态”,<br> “可执行文件路径”<br> 本地信息有：”真实名称”,<br> “显示名称”,<br> “启动类型”,<br> “运行状态”,<br> “可执行文件路径”</p>
+</li>
+<li><p>根据选择给客户端发操作。<br> Method：<br> 1 启动<br> 2 停止<br> 3 自启动<br> 4 手动启动</p>
+</li>
+</ol>
+<h1 id="即时消息"><a href="#即时消息" class="headerlink" title="即时消息"></a>即时消息</h1><h2 id="客户端-3"><a href="#客户端-3" class="headerlink" title="客户端"></a>客户端</h2><ol>
+<li>#pragma comment(lib, “WINMM.LIB”) 时钟回调，其实是实现展示一下以后就关闭。消息到了响一下铃声</li>
+<li>消息来了设置事务，然后展示到窗口</li>
+</ol>
+<h2 id="服务端-3"><a href="#服务端-3" class="headerlink" title="服务端"></a>服务端</h2><ol>
+<li>获取编辑框里面的数据，检测到回车就发出去</li>
+</ol>
+<h1 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h1><h2 id="客户端-4"><a href="#客户端-4" class="headerlink" title="客户端"></a>客户端</h2><ol>
+<li>LoadLibrary(“File.dll”);</li>
+<li>GetLocalHardDiskInfo获取磁盘信息</li>
+<li>GetLocalFileList获取文件信息</li>
+<li>解析一下，发到服务端去</li>
+</ol>
+<h2 id="服务端-4"><a href="#服务端-4" class="headerlink" title="服务端"></a>服务端</h2><ol>
+<li>CreateFileA通过DiskVolumeName打开卷句柄，通过DeviceIOControl传递FSCTL_QUERY_USN_JOURNAL得到UNS<br> USN是Update Service Number Journal or Change Journal的英文缩写，直译为“更新序列号”，是对NTFS卷里所修改过的信息进行相关记录的功能。当年微软发布Windows 2000时，建立NTFS 5.0的同时，加入了一些新功能和改进了旧版本的文件系统，为它请来了一位可靠的秘书，<strong>它可以在分区中设置监视更改的文件和目录的数量，记录下监视对象修改时间和修改内容</strong>。没错，它就是USN日志。当这个功能启用时，对于每一个NTFS卷，当发生有关添加、删除和修改文件的信息时，NTFS都使用USN日志记录下来。</li>
+<li>再发FSCTL_ENUM_USN_DATA遍历记录，展示</li>
+<li>监视UNS，维护数据结构</li>
+<li>LoadLibrary(“File.dll”); GetLocalHardDiskInfo展示服务端的信息</li>
+<li>展示信息包括<br> “名称”,<br> “显示名称”<br> “文件系统”<br> “类型”,<br> “总大小”,<br> “可用空间”</li>
+<li>发送到客户端重新请求文件信息（我好像没找到操作客户端的函数）</li>
+</ol>
+<h1 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h1><h2 id="客户端-5"><a href="#客户端-5" class="headerlink" title="客户端"></a>客户端</h2><h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><ol>
+<li>LoadLibrary(“Process.dll”);</li>
+<li>GetProcAddress获取SeEnumProcessList，遍历进程信息。解析以后发到服务端</li>
+<li>接收消息，调用Ring3KillProcess杀进程。</li>
+</ol>
+<h3 id="窗口管理"><a href="#窗口管理" class="headerlink" title="窗口管理"></a>窗口管理</h3><ol>
+<li>LoadLibrary(“Window.dll”);（这尼玛也有对应的dll，跪了。。）</li>
+<li>GetProcAddress获取下述函数地址</li>
+<li>GetWindowList获取打开的窗口信息，解析一下发服务端</li>
+<li>接收消息，调用SetWindowStatus设置窗口状态(最小化等)，调用PostWindowMessage向窗口发信息(关闭等)</li>
+</ol>
+<h2 id="服务端-5"><a href="#服务端-5" class="headerlink" title="服务端"></a>服务端</h2><h3 id="进程管理-1"><a href="#进程管理-1" class="headerlink" title="进程管理"></a>进程管理</h3><ol>
+<li>LoadLibrary(“Process.dll”);，SeEnumProcessList，Ring3KillProcess，查看和操作本机的进程。</li>
+<li>Wow64EnableWow64FsRedirection 禁止文件重定向</li>
+<li>展示客户端的进程信息</li>
+<li>客户点击杀进程，发消息给客户端，或者对本地操作</li>
+<li>点击了获取进程模块信息，调用<code>OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,FALSE,ProcessID)</code>获取信息，并开一个新窗口展示</li>
+</ol>
+<h3 id="进程模块管理"><a href="#进程模块管理" class="headerlink" title="进程模块管理"></a>进程模块管理</h3><ol>
+<li>GetModuleHandle(“Process.dll”);（这说明这个dll已经被导入，直接获取句柄。LoadLibrary会重新映射进内存并增加引用计数）</li>
+<li>GetProcAddress拿到SeEnumProcessModuleList，传进PID即可获取到所有模块信息，解析以后放上窗口。包括：<br> “模块地址”,<br> “模块大小”,<br> “模块完整路径”,<br> “模块类型”,</li>
+</ol>
+<h3 id="窗口管理-1"><a href="#窗口管理-1" class="headerlink" title="窗口管理"></a>窗口管理</h3><ol>
+<li>LoadLibrary(“Window.dll”); 下述函数地址都GetProcAddress而来</li>
+<li>展示客户端和本机的消息，内容有:”窗口句柄”,<br> “窗口名称”,<br> “窗口类名称<br> “窗口状态”,<br> “启用&#x2F;禁用”<br> “线程ID”,<br> “进程ID”,<br> “占位”</li>
+<li>GetWindowList，SetWindowStatus，PostWindowMessage操作本机，或给客户端发消息操作客户端</li>
+<li>RestartForbidWindow重启被禁用的窗口</li>
+<li>FixWindowTitleBar重设窗口标题</li>
+</ol>
+<h1 id="远控"><a href="#远控" class="headerlink" title="远控"></a>远控</h1><h2 id="客户端-6"><a href="#客户端-6" class="headerlink" title="客户端"></a>客户端</h2><ol>
+<li>开线程，设置线程回调</li>
+<li>线程回调中向服务端发送bmp位图</li>
+<li>发送第一张截图</li>
+<li>一直发送下一张截图</li>
+<li>接受服务端消息，发送给位图。调用BlockInput可以锁上鼠标键盘等待消息，或解锁进行操作。</li>
+<li>解析发来的数据，调用SetCursorPos移动鼠标，SetCapture设置画面，mouse_event和keybd_event传递键盘鼠标事件。</li>
+<li>GetClipboardData获取剪切板发给服务端，SetClipboardData根据消息设置剪切板</li>
+</ol>
+<p>以上靠&lt;Windows.h&gt;（WinUser.h）提供的API实现。位图操作如下</p>
+<ol>
+<li>GetSystemMetrics获取屏幕分辨率</li>
+<li>构建BITMAPINFOHEADER位图结构体</li>
+<li>GetDesktopWindow获取屏幕句柄。GetDC获取屏幕DC。<br> 设备描述表（DC）是Windows中的一种数据结构，它包含GDI需要的所有关于显示界面情况的描述字段，包括相连的物理设备和各种各样的状态信息。在Windows画图之前，Windows程序从GDI获取设备描述表句柄（HDC），并在每次调用完GDI输出函数后将句柄返回给GDI。屏幕上的每一个窗口都对应一个DC，可以把DC想象成一个视频缓冲区，对这这个缓冲区的操作，会表现在这个缓冲区对应的屏幕窗口上。</li>
+<li>CreateCompatibleDC创建设备上下文，CreateDIBSection把信息分配进位图里</li>
+<li>截图位于m_BitmapInfo-&gt;bmiHeader.biSizeImage</li>
+<li>光标调用GetCursorPos传入POINT结构</li>
+<li>每次分段扫描全屏幕，调用BitBlt传入DC句柄，新的位图和旧的按结构作比较，如果不同就修改，然后返回新的位图</li>
+</ol>
+<h2 id="服务端-6"><a href="#服务端-6" class="headerlink" title="服务端"></a>服务端</h2><ol>
+<li>根据句柄CreateCompatibleDC获取DC，CreateDIBSection把信息分配进位图里，SelectObject择一对象到指定的设备上下文环境，SetScrollRange指定滚动条范围的最小值和最大值</li>
+<li>得到被控端发来的数据 ，将他memcpy拷贝到HBITMAP的缓冲区中，这样一个图像就出现了</li>
+<li>后续更新一下变化部分的屏幕数据然后BitBlt、DrawIconEx重绘，memcmp比较鼠标位置，根据鼠标是否移动和屏幕是否变化判断是否重绘鼠标，防止鼠标闪烁</li>
+<li>汇编实现的代码控制ESI指向的数据（我看不懂了）</li>
+<li>根据枚举类型，判断要做的操作。要获取客户端剪切板，需要一直获取，所以提交到完成端口队列。同样把自己的剪切板也要一变化就发到客户端去。</li>
+<li>还用了内存池来管理。详见浅析nginx内存池</li>
+</ol>
+<h1 id="注册表管理"><a href="#注册表管理" class="headerlink" title="注册表管理"></a>注册表管理</h1><h2 id="客户端-7"><a href="#客户端-7" class="headerlink" title="客户端"></a>客户端</h2><p>全给注释了，啥也没做。其实建立好通信，就和服务端的操作一样了。</p>
+<h2 id="服务端-7"><a href="#服务端-7" class="headerlink" title="服务端"></a>服务端</h2><ol>
+<li>LoadLibrary(“Register.dll”);，以下函数都用这个做ModuleBase调用GetProcAddress</li>
+<li>SeEnumRegisterDirList遍历注册表目录。解析HKEY_CLASSES_ROOT、HKEY_CURRENT_USER、HKEY_LOCAL_MACHINE、HKEY_USERS、HKEY_CURRENT_CONFIG等等目录</li>
+<li>SeEnumRegisterItemList遍历注册表Item，列出名称，类型，数据。分开REG_SZ，REG_DWORD，REG_QWORD，REG_BINARY，REG_EXPAND_SZ</li>
+<li>后续没有啥删除，修改的操作。。。</li>
+</ol>
+<h1 id="内核管理"><a href="#内核管理" class="headerlink" title="内核管理"></a>内核管理</h1><p>只有客户端有</p>
+<h2 id="客户端-8"><a href="#客户端-8" class="headerlink" title="客户端"></a>客户端</h2><ol>
+<li>LoadLibraryA(“Ntdll.DLL”)</li>
+<li>GetProcAddress拿到ZwShutdownSystem关机。需要提权到关机权限，OpenProcessToken拿Token然后AdjustTokenPrivileges权限那一套，或者EnableSeDebugPrivilege</li>
+<li>负责和服务端通信。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io">qianmu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://qianmuoy.github.io/2024/03/18/%E4%BD%BF%E7%94%A8WindowsAPI%E5%9C%A8Ring3%E8%BF%9B%E8%A1%8C%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/">https://qianmuoy.github.io/2024/03/18/%E4%BD%BF%E7%94%A8WindowsAPI%E5%9C%A8Ring3%E8%BF%9B%E8%A1%8C%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/18/Frida/" title="Frida"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Frida</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/18/arm%E5%92%8Cthumb/" title="arm和thumb"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">arm和thumb</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianmu</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/QianMuOY"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Windows-API%E5%9C%A8Ring3%E5%AF%B9%E7%B3%BB%E7%BB%9F%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">使用Windows API在Ring3对系统进行操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cmd"><span class="toc-number">2.</span> <span class="toc-text">Cmd</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">2.1.</span> <span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-number">2.2.</span> <span class="toc-text">服务端</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-number">3.</span> <span class="toc-text">登录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-1"><span class="toc-number">3.1.</span> <span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-1"><span class="toc-number">3.2.</span> <span class="toc-text">服务端</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">服务管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-2"><span class="toc-number">4.1.</span> <span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-2"><span class="toc-number">4.2.</span> <span class="toc-text">服务端</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B3%E6%97%B6%E6%B6%88%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">即时消息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-3"><span class="toc-number">5.1.</span> <span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-3"><span class="toc-number">5.2.</span> <span class="toc-text">服务端</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">文件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-4"><span class="toc-number">6.1.</span> <span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-4"><span class="toc-number">6.2.</span> <span class="toc-text">服务端</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="toc-number">7.</span> <span class="toc-text">系统管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-5"><span class="toc-number">7.1.</span> <span class="toc-text">客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">7.1.1.</span> <span class="toc-text">进程管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86"><span class="toc-number">7.1.2.</span> <span class="toc-text">窗口管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-5"><span class="toc-number">7.2.</span> <span class="toc-text">服务端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-1"><span class="toc-number">7.2.1.</span> <span class="toc-text">进程管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9D%97%E7%AE%A1%E7%90%86"><span class="toc-number">7.2.2.</span> <span class="toc-text">进程模块管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86-1"><span class="toc-number">7.2.3.</span> <span class="toc-text">窗口管理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9C%E6%8E%A7"><span class="toc-number">8.</span> <span class="toc-text">远控</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-6"><span class="toc-number">8.1.</span> <span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-6"><span class="toc-number">8.2.</span> <span class="toc-text">服务端</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8%E7%AE%A1%E7%90%86"><span class="toc-number">9.</span> <span class="toc-text">注册表管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-7"><span class="toc-number">9.1.</span> <span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-7"><span class="toc-number">9.2.</span> <span class="toc-text">服务端</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E7%AE%A1%E7%90%86"><span class="toc-number">10.</span> <span class="toc-text">内核管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-8"><span class="toc-number">10.1.</span> <span class="toc-text">客户端</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/18/Frida/" title="Frida">Frida</a><time datetime="2024-03-18T14:24:28.000Z" title="Created 2024-03-18 22:24:28">2024-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/18/%E4%BD%BF%E7%94%A8WindowsAPI%E5%9C%A8Ring3%E8%BF%9B%E8%A1%8C%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C/" title="使用WindowsAPI在Ring3进行系统操作">使用WindowsAPI在Ring3进行系统操作</a><time datetime="2024-03-18T14:23:36.000Z" title="Created 2024-03-18 22:23:36">2024-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/18/arm%E5%92%8Cthumb/" title="arm和thumb">arm和thumb</a><time datetime="2024-03-18T14:20:58.000Z" title="Created 2024-03-18 22:20:58">2024-03-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/%E8%8E%B7%E5%8F%96Ntdll%E5%87%BD%E6%95%B0%E4%B8%8ENtOS%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF/" title="获取Ntdll函数与NtOS服务信息">获取Ntdll函数与NtOS服务信息</a><time datetime="2024-03-09T13:09:29.000Z" title="Created 2024-03-09 21:09:29">2024-03-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/09/APC%E6%B3%A8%E5%85%A5/" title="APC注入">APC注入</a><time datetime="2024-03-09T12:40:40.000Z" title="Created 2024-03-09 20:40:40">2024-03-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By qianmu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async src="https://www.liuzehe.top/upload/bkjs/yinghua.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":120,"height":260},"mobile":{"show":"flase"},"log":false});</script></body></html>
